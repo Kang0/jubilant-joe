@@ -17,7 +17,7 @@ class CreateChallenge extends Component {
         event.preventDefault()
         this.props.postChallenge(this.state)
         this.setState({
-            text: ''
+            name: ''
         })
     }
 

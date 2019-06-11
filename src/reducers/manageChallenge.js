@@ -3,6 +3,12 @@ export default function manageChallenge(state = {
 }, action) {
     switch(action.type) {
 
+        case 'FETCH_CHALLENGES':
+            return {
+                ...state,
+                challenges: [action.data]
+            }
+
         case 'LOADING_CHALLENGE':
             return {
                 ...state

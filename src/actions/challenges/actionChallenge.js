@@ -11,5 +11,6 @@ export const postChallenge = formData => {
                 })
                 .then(resp => resp.json())
                 .then(challenge => dispatch({ type: "POST_CHALLENGE", challenge}))
+                .catch(error => console.log("Error" + error))
     }
 }
