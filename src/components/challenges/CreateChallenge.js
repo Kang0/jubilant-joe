@@ -13,16 +13,24 @@ class CreateChallenge extends Component {
         })
     }
 
+    handleOnSubmit = event => {
+        event.preventDefault()
+        
+    }
+
     render () {
         return (
             <React.Fragment>
-                <form>
+                <form onSubmit={event=>this.handleOnSubmit(event)}>
                     <input type="text" value={this.state.text} onChange={event => this.handleOnChange(event)} />
                     <input type="submit" value="Submit" />
                 </form>
             </React.Fragment>
         )
     }
+
+
+    
 
 }
 
