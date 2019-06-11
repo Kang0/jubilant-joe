@@ -15,7 +15,10 @@ class CreateChallenge extends Component {
 
     handleOnSubmit = event => {
         event.preventDefault()
-        
+        this.props.addChallenge(this.state)
+        this.setState({
+            text: ''
+        })
     }
 
     render () {
