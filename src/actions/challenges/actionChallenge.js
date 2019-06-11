@@ -1,23 +1,15 @@
-export const addChallenge = formData => {
-    return ({
-        type: "POST_CHALLENGE",
-        formData
-    })
+export const postChallenge = formData => {
+    return (dispatch) => {
+        dispatch({ type: "POSTING_CHALLENGE"});
+        return fetch('http://localhost:3001/api/v1/challenges.json', {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(resp => resp.json())
+                .then(challenge => dispatch({ type: "POST_CHALLENGE", challenge}))
+    }
 }
-
-// export const postChallenge = formData => {
-//     return(
-//         fetch('http://localhost:3001/api/v1/challenges', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({
-//                 name: formData.name,
-//                 daysLeft: formData.daysLeft
-//             })
-//         })
-//         .then(response => response.json())
-//         .then(r => console.log(r))
-//     )
-// }

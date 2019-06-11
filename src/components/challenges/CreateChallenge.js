@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 class CreateChallenge extends Component {
 
     state = {
-        text: '',
+        name: '',
         daysLeft: 100
     }
 
     handleOnChange = event => {
         this.setState({
-            text: event.target.value
+            name: event.target.value
         })
     }
 
     handleOnSubmit = event => {
         event.preventDefault()
-        this.props.addChallenge(this.state)
+        this.props.postChallenge(this.state)
         this.setState({
             text: ''
         })
@@ -25,7 +25,7 @@ class CreateChallenge extends Component {
         return (
             <React.Fragment>
                 <form onSubmit={event=>this.handleOnSubmit(event)}>
-                    <input type="text" value={this.state.text} onChange={event => this.handleOnChange(event)} />
+                    <input type="text" value={this.state.name} onChange={event => this.handleOnChange(event)} />
                     <input type="submit" value="Submit" />
                 </form>
             </React.Fragment>

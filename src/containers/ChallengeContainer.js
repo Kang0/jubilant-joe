@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 //import challenge components
 import CreateChallenge from '../components/challenges/CreateChallenge'
 //import challenge actions
-import { addChallenge, postChallenge } from '../actions/challenges/actionChallenge'
+import { postChallenge } from '../actions/challenges/actionChallenge'
 
 class ChallengeContainer extends Component {
 
     render () {
         return (
             <div>
-                <CreateChallenge addChallenge={this.props.addChallenge}/>
+                <CreateChallenge postChallenge={this.props.postChallenge}/>
             </div>
         )
     }
@@ -23,10 +23,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addChallenge: formData => dispatch(addChallenge(formData))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChallengeContainer)
+export default connect(mapStateToProps, { postChallenge })(ChallengeContainer)
