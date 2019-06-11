@@ -18,6 +18,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //reducers
 import manageChallenge from './reducers/manageChallenge'
 
+
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({manageChallenge})

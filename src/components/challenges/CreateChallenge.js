@@ -25,3 +25,5 @@ class CreateChallenge extends Component {
     }
 
 }
+
+export default CreateChallenge
