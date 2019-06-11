@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 //import challenge components
 import CreateChallenge from '../components/challenges/CreateChallenge'
 //import challenge actions
-import { addChallenge } from '../actions/challenges/actionChallenge'
+import { addChallenge, postChallenge } from '../actions/challenges/actionChallenge'
 
 class ChallengeContainer extends Component {
 
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addChallenge: formData => dispatch(addChallenge(formData))
+        addChallenge: formData => dispatch(postChallenge(formData))
     }
 }
 
