@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addChallenge: formData => dispatch(postChallenge(formData))
+        addChallenge: formData => dispatch(addChallenge(formData))
     }
 }
 
