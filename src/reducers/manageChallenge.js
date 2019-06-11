@@ -1,4 +1,4 @@
-export function manageChallenge(state = {
+export default function manageChallenge(state = {
     challenges: []
 }, action) {
     switch(action.type) {
