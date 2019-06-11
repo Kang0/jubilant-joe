@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 //import challenge components
 import CreateChallenge from '../components/challenges/CreateChallenge'
-import DisplayChallenges from '.../components/challenges/DisplayChallenges'
+import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
-import { postChallenge } from '../actions/challenges/actionChallenge'
+import { postChallenge, getChallenges } from '../actions/challenges/actionChallenge'
 
 class ChallengeContainer extends Component {
+
+    componentDidMount() {
+        getChallenges()
+    }
 
     render () {
         return (
@@ -25,4 +29,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { postChallenge })(ChallengeContainer)
+export default connect(mapStateToProps, { postChallenge, getChallenges })(ChallengeContainer)
