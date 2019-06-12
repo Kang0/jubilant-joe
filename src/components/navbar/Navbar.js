@@ -11,7 +11,7 @@ const Navbar = () => {
         textDecoration: 'none',
         color: 'white',
     }
-    
+
     return(
         <div>
             <NavLink
@@ -41,7 +41,7 @@ const Navbar = () => {
                 background: 'darkblue'
             }}
             >Login</NavLink>
-        </div>;
+        </div>
     )
 }
 
