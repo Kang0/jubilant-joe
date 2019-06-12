@@ -4,7 +4,7 @@ const DisplayChallenges = ({ challenges }) => {
     console.log(challenges)
     const renderChallenge = challenges.map(challenge => {
         return(
-            <li>
+            <li key={challenge.id}>
                 {challenge.name}
             </li>
         )

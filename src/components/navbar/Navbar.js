@@ -25,6 +25,7 @@ const Navbar = () => {
                 background: 'darkblue'
             }}
             >Home</NavLink>
+            
             <NavLink
             to="/about"
             exact
@@ -33,6 +34,7 @@ const Navbar = () => {
                 background: 'darkblue'
             }}
             >About</NavLink>
+
             <NavLink
             to="/login"
             exact
@@ -41,6 +43,14 @@ const Navbar = () => {
                 background: 'darkblue'
             }}
             >Login</NavLink>
+
+            <NavLink
+            to="/registration"
+            exact
+            style={link}
+            activeStyle={{background: 'darkblue'}}>
+                Register
+            </NavLink>
         </div>
     )
 }

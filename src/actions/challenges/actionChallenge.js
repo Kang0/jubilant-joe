@@ -1,4 +1,5 @@
 export const postChallenge = formData => {
+    let token = localStorage.getItem('token')
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return fetch('http://localhost:3001/api/v1/challenges.json', {
@@ -6,21 +7,30 @@ export const postChallenge = formData => {
                     body: JSON.stringify(formData),
                     headers: {
                         'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                 .then(resp => resp.json())
-                .then(challenge => dispatch({ type: "POST_CHALLENGE", challenge}))
+                .then(challenge => {dispatch({ type: "POST_CHALLENGE", challenge })})
                 .catch(error => console.log("Error" + error))
     }
 }
 
 export const getChallenges = () => {
+    let token = localStorage.getItem('token')
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
-        return fetch('http://localhost:3001/api/v1/challenges.json')
+        return fetch('http://localhost:3001/api/v1/challenges.json', {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(resp => resp.json())
-            .then(data => dispatch({ type: "FETCH_CHALLENGES", data}))
+            .then(data => {
+                console.log(data) 
+                dispatch({ type: "FETCH_CHALLENGES", data })})
             .catch(error => console.log("Error" + error))
     }
 }

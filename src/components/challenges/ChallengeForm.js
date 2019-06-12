@@ -4,7 +4,7 @@ class ChallengeForm extends Component {
 
     state = {
         name: '',
-        daysLeft: 100
+        daysLeft: 100,
     }
 
     handleOnChange = event => {

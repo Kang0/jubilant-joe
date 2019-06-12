@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import App from '../App'
-import Login from '../containers/LoginContainer'
+import LoginForm from '../components/login/LoginForm'
 import Navbar from '../components/navbar/Navbar'
+import Registration from '../components/user/RegisterUser'
 
 class NavbarContainer extends Component {
     render() {
@@ -11,9 +12,9 @@ class NavbarContainer extends Component {
             <Router>
                 <div>
                     <Navbar />
-                    <Route exact path="/" component={App} />
-                    <Route exact path='/login' component={Login} />
-                    {/* <Route exact path="/login" component={User} /> */}
+                    <Route exact path="/" component={ App } />
+                    <Route exact path='/login' component={ LoginForm } />
+                    <Route exact path="/registration" component={ Registration } />
                 </div>
             </Router>
         )

@@ -21,8 +21,6 @@ class LoginForm extends Component {
             password: this.state.password
         }
 
-        console.log(JSON.stringify(params))
-
         let url = "http://localhost:3001/login"
 
         fetch(url, {
