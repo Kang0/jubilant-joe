@@ -37,6 +37,7 @@ class LoginForm extends Component {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
+                console.log("Sucessfully Logged In")
                 localStorage.setItem("token", data.token)
             } else {
                 this.setState({error: 'Invalid username or password'})
