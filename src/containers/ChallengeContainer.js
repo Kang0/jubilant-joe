@@ -9,14 +9,14 @@ import { postChallenge, getChallenges } from '../actions/challenges/actionChalle
 class ChallengeContainer extends Component {
 
     componentDidMount() {
-        getChallenges()
+        this.props.getChallenges()
     }
 
     render () {
         return (
             <div>
                 <CreateChallenge postChallenge={this.props.postChallenge}/>
-                <DisplayChallenges />
+                <DisplayChallenges challenges={this.props.challenges}/>
             </div>
         )
     }
@@ -25,7 +25,7 @@ class ChallengeContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        challenge: state
+        challenges: state.manageChallenge.challenges
     }
 }
 

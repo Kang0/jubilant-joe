@@ -4,9 +4,11 @@ export default function manageChallenge(state = {
     switch(action.type) {
 
         case 'FETCH_CHALLENGES':
+            debugger;
+            console.log("successfully retireved", action.data)
             return {
                 ...state,
-                challenges: [action.data]
+                challenges: action.data
             }
 
         case 'LOADING_CHALLENGE':
