@@ -15,6 +15,14 @@ class UserPage extends Component {
                     'Authorization': `Bearer ${token}`
                 }
             })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    user: data
+                })
+            })
+            .catch(error => console.error(error))
         }
     }
 
@@ -23,11 +31,11 @@ class UserPage extends Component {
             <div>
                 {this.state.user ? (
                     <div>
-                        <h1>{this.state.user.name}</h1>
+                        <h1>{this.state.user.username}</h1>
                         <p>{this.state.user.email}</p>
                     </div>
                 ) : (
-                    <p>Loading...</p>
+                    <p>Please Login</p>
                 )}
             </div>
         )
