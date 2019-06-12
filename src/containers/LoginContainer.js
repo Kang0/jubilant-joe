@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
 import LoginForm from '../components/login/LoginForm'
+import UserPage from '../components/user/UserPage'
 
 class LoginContainer extends Component {
 
     render() {
         return (
-            <LoginForm />
+            <div>
+                <LoginForm />
+                <UserPage />
+            </div>
         )
     }
-    
+
 }
 
 export default LoginContainer
