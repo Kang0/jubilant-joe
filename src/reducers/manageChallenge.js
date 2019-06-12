@@ -4,7 +4,6 @@ export default function manageChallenge(state = {
     switch(action.type) {
 
         case 'FETCH_CHALLENGES':
-            debugger;
             console.log("successfully retireved", action.data)
             return {
                 ...state,
@@ -17,7 +16,6 @@ export default function manageChallenge(state = {
             }
 
         case 'POST_CHALLENGE':
-            debugger;
             return {
                 ...state,
                 challenges: [...state.challenges, action.challenge]

@@ -1,8 +1,7 @@
 import React from 'react';
 
-const DisplayChallenges = (props) => {
-    console.log(props)
-    const { challenges } = props
+const DisplayChallenges = ({ challenges }) => {
+    console.log(challenges)
     const renderChallenge = challenges.map(challenge => {
         return(
             <li>
