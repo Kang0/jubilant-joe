@@ -34,6 +34,14 @@ class LoginForm extends Component {
                 Accept: 'application/json'
             }
         })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                localStorage.setItem("token", data.token)
+            } else {
+                this.setState({error: 'Invalid username or password'})
+            }
+        })
         .catch(error => console.log("Error " + error))
     }
 
@@ -45,6 +53,7 @@ class LoginForm extends Component {
                     <input type="password" name="password" value={this.state.password} onChange={event => this.handleOnChange(event)} />
                     <input type="submit" value="Login" />
                 </form>
+                <span>{this.state.error}</span>
             </div>
         )
     }
