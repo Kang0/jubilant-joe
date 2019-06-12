@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CreateChallenge extends Component {
+class ChallengeForm extends Component {
 
     state = {
         name: '',
@@ -37,4 +37,4 @@ class CreateChallenge extends Component {
 
 }
 
-export default CreateChallenge
+export default ChallengeForm

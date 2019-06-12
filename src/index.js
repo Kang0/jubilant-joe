@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import NavbarContainer from './containers/NavbarContainer'
+
 //redux
 import { Provider } from 'react-redux';
 import {
@@ -30,7 +32,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <NavbarContainer />
   </Provider>,
   document.getElementById('root')
 );
