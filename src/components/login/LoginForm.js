@@ -20,6 +20,21 @@ class LoginForm extends Component {
             username: this.state.username,
             password: this.state.password
         }
+
+        console.log(JSON.stringify(params))
+
+        let url = "http://localhost:3001/login"
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(params),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        })
+        .catch(error => console.log("Error " + error))
     }
 
     render() {
