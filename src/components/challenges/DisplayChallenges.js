@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class DisplayChallenges extends Component {
 
-    componentDidMount() {
+    handleOnClick = () => {
+        this.props.buttonClick()
     }
     
     render() {
@@ -12,7 +13,7 @@ class DisplayChallenges extends Component {
                     <li key={challenge.id}>
                         {challenge.name} - {challenge.daysLeft}
                     </li>
-                    <button>I did this today</button>
+                    <button onClick={this.handleOnClick}>I did this today</button>
                 </>
             )
         })

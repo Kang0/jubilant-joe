@@ -42,3 +42,10 @@ export const getChallenges = () => {
     }
 }
 
+//Update the challenge's info stating the button was clicked once today. 
+export const buttonClickUpdateChallenge = () => {
+    return (dispatch, getState) => {
+        debugger;
+    }
+}
+
