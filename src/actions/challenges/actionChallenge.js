@@ -1,5 +1,4 @@
-//Can pass in getState
-
+import moment from 'moment'
 
 //POST new user challenge to the db
 export const postChallenge = formData => {
@@ -45,7 +44,19 @@ export const getChallenges = () => {
 //Update the challenge's info stating the button was clicked once today. 
 export const buttonClickUpdateChallenge = () => {
     return (dispatch, getState) => {
-        debugger;
+        let userChallenges = getState().manageChallenge.challenges
+
+        userChallenges.map(challenge => {
+            let currentTime = moment(new Date()).format("MMM D YY, h:mm a")
+            let dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
+
+            if (moment(currentTime).isAfter(challenge.timeToClick)) {
+                challenge.clicked = true
+                challenge.timeClicked = currentTime
+                challenge.timeToClick = dayAfterCurrentTime
+            }
+            debugger;
+        })
     }
 }
 

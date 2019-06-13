@@ -37,8 +37,6 @@ class ChallengeForm extends Component {
         
         const timeToClick = moment(new Date()).format("MMM D YY, h:mm a")
 
-
-        debugger;
         this.setState({
             dayCreated: dayCreated,
             lastDay: lastDay,

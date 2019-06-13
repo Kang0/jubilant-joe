@@ -40,23 +40,28 @@ const updateDays = data => {
 
     return (
         data.map(challenge => {
-            const currentDate = moment(new Date())
-            const myDate = currentDate.format('MM-DD-YYYY')
-
-            let t = "06-09-2019"
+            const currentDate = moment(new Date()).format('MM-DD-YYYY')
     
-            let dayCreated = moment(challenge.dayCreated)
+            let dayCreated = moment(challenge.dayCreated).format('MM-DD-YYYY')
             let lastDay = moment(challenge.lastDay)
 
-            if (moment(myDate).isSameOrBefore(lastDay._i)) {
-                let diff = 100 - moment(myDate).diff(t, 'days') //change t to dayCreated._i
+            if (moment(currentDate).isSameOrBefore(lastDay._i)) {
+                let diff = 100 - moment(currentDate).diff(dayCreated, 'days') //change t to dayCreated._i
         
                 if (challenge.daysLeft !== diff) {
                     challenge.daysLeft = diff
                 } 
+            } //else statement once the date is after the last day of the challenge
+
+            let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
+
+            if (moment(canClickButton).isAfter(challenge.timeToClick)) {
+                challenge.clicked = false
             }
 
             return challenge
         })
     )
 }
+
+//had to put updateDays here due to the async actions, need to have state loaded first before being able to update the days
