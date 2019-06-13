@@ -2,7 +2,6 @@ import moment from 'moment'
 
 //POST new user challenge to the db
 export const postChallenge = formData => {
-    debugger;
     let token = localStorage.getItem('token')
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
@@ -42,21 +41,40 @@ export const getChallenges = () => {
 }
 
 //Update the challenge's info stating the button was clicked once today. 
-export const buttonClickUpdateChallenge = () => {
+export const buttonClickUpdateChallenge = (id) => {
+    let token = localStorage.getItem('token')
     return (dispatch, getState) => {
+        //grab the current challenge state and filter to get the challenge which was clicked by using id
         let userChallenges = getState().manageChallenge.challenges
+        let userChallenge = userChallenges.filter(challenge => challenge.id == id)[0]
 
-        userChallenges.map(challenge => {
-            let currentTime = moment(new Date()).format("MMM D YY, h:mm a")
-            let dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
+        //grab the current time and set to moment format ("MMM D YY, h:mm a") and add one day to the current time
+        const currentTime = moment(new Date()).format("MMM D YY, h:mm a")
+        const dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
 
-            if (moment(currentTime).isAfter(challenge.timeToClick)) {
-                challenge.clicked = true
-                challenge.timeClicked = currentTime
-                challenge.timeToClick = dayAfterCurrentTime
-            }
+        if (moment(currentTime).isAfter(userChallenge.timeToClick)) {
+            userChallenge.clicked = true
+            userChallenge.timeClicked = currentTime
+            userChallenge.timeToClick = dayAfterCurrentTime
+
             debugger;
-        })
+            
+            const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
+
+            return (fetch(postUpdateUrl, {
+                method: "PATCH",
+                body: JSON.stringify(userChallenge),
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(req => req.json())
+            .then(data => dispatch({ type: "CLICK_BUTTON", payload: data }))
+            .catch(error => {console.log(error)})
+            )
+        }      
     }
 }
 

@@ -25,10 +25,18 @@ export default function manageChallenge(state = {
                 challenges: update
             }
 
+        //event handlers, submit, click
         case 'POST_CHALLENGE':
             return {
                 ...state,
                 challenges: [...state.challenges, action.challenge]
+            }
+        
+        case 'CLICK_BUTTON':
+            debugger;
+            return {
+                ...state,
+                challenges: state.challenges.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
             }
 
         default:
@@ -56,6 +64,7 @@ const updateDays = data => {
             let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
 
             if (moment(canClickButton).isAfter(challenge.timeToClick)) {
+                debugger;
                 challenge.clicked = false
             }
 

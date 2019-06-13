@@ -2,20 +2,32 @@ import React, { Component } from 'react';
 
 class DisplayChallenges extends Component {
 
-    handleOnClick = () => {
-        this.props.buttonClick()
+    handleOnClick = event => {
+        this.props.buttonClick(event.target.id)
+        //passing in the challenge id as an argument
     }
     
     render() {
         const renderChallenge = this.props.challenges.map(challenge => {
-            return(
-                <>
-                    <li key={challenge.id}>
-                        {challenge.name} - {challenge.daysLeft}
-                    </li>
-                    <button onClick={this.handleOnClick}>I did this today</button>
-                </>
-            )
+            if(challenge.clicked) {
+                return (
+                    <>
+                        <li key={challenge.id}>
+                            {challenge.name} - {challenge.daysLeft}
+                            <button value="disable" disabled>Already completed for the day</button>
+                        </li>
+                    </>
+                )
+            } else {
+                return (
+                    <>
+                        <li key={challenge.id}>
+                            {challenge.name} - {challenge.daysLeft}
+                            <button id={challenge.id} onClick={event => this.handleOnClick(event)}>I did this today</button>
+                        </li>
+                    </>
+                )
+            }
         })
 
         return(
