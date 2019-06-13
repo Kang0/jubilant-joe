@@ -41,7 +41,8 @@ class ChallengeForm extends Component {
         debugger;
         this.setState({
             dayCreated: dayCreated,
-            lastDay: lastDay
+            lastDay: lastDay,
+            timeToClick: timeToClick
         })
     }
 
