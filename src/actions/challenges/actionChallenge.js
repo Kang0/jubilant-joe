@@ -1,4 +1,9 @@
+//Can pass in getState
+
+
+//POST new user challenge to the db
 export const postChallenge = formData => {
+    debugger;
     let token = localStorage.getItem('token')
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
@@ -17,9 +22,10 @@ export const postChallenge = formData => {
     }
 }
 
+//GET user's challenges 
 export const getChallenges = () => {
     let token = localStorage.getItem('token')
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return fetch('http://localhost:3001/api/v1/challenges.json', {
             method: "GET",
@@ -31,6 +37,8 @@ export const getChallenges = () => {
             .then(data => {
                 console.log(data) 
                 dispatch({ type: "FETCH_CHALLENGES", data })})
+            .then(data => dispatch({ type: "UPDATE_DAYS" }))
             .catch(error => console.log("Error" + error))
     }
 }
+

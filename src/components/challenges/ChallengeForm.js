@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class ChallengeForm extends Component {
 
     state = {
         name: '',
+        dayCreated: '',
         daysLeft: 100,
+        lastDay: ''
+    }
+
+    componentDidMount() {
+        this.getDate()
     }
 
     handleOnChange = event => {
@@ -18,6 +25,15 @@ class ChallengeForm extends Component {
         this.props.postChallenge(this.state)
         this.setState({
             name: ''
+        })
+    }
+
+    getDate = () => {
+        const dayCreated = moment(new Date()).format('MM-DD-YYYY')
+        const lastDay = moment(dayCreated, "MM-DD-YYYY").add('days', 100).format('MM-DD-YYYY')
+        this.setState({
+            dayCreated: dayCreated,
+            lastDay: lastDay
         })
     }
 

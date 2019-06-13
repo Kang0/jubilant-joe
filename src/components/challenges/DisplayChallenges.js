@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const DisplayChallenges = ({ challenges }) => {
-    console.log(challenges)
-    const renderChallenge = challenges.map(challenge => {
+class DisplayChallenges extends Component {
+
+    componentDidMount() {
+    }
+    
+    render() {
+        const renderChallenge = this.props.challenges.map(challenge => {
+            return(
+                <>
+                    <li key={challenge.id}>
+                        {challenge.name} - {challenge.daysLeft}
+                    </li>
+                    <button>I did this today</button>
+                </>
+            )
+        })
+
         return(
-            <li key={challenge.id}>
-                {challenge.name}
-            </li>
+            <div>
+                {renderChallenge}
+            </div>
         )
-    })
-    return(
-        <div>
-            {renderChallenge}
-        </div>
-    )
+    }
+    
 }
 
 export default DisplayChallenges
