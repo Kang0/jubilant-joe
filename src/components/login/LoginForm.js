@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 
 class LoginForm extends Component {
     
@@ -21,6 +20,8 @@ class LoginForm extends Component {
             username: this.state.username,
             password: this.state.password
         }
+
+        debugger;
 
         this.props.loginUser(params)
     }

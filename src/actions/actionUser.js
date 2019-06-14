@@ -1,4 +1,4 @@
-const loginUser = userInfo => {
+export const loginUser = userInfo => {
     let url = "http://localhost:3001/login"
 
     return dispatch => {
@@ -17,7 +17,6 @@ const loginUser = userInfo => {
                 if (data.success) {
                     console.log("Sucessfully Logged In")
                     localStorage.setItem("token", data.token)
-                    
                 } else {
                     this.setState({error: 'Invalid username or password'})
                 }
@@ -26,4 +25,24 @@ const loginUser = userInfo => {
     )}
 }
 
-export default loginUser
+export const setUserState = () => {
+    let baseUrl = 'http://localhost:3001'
+    let token = localStorage.getItem('token')
+
+    if (token) {
+        return dispatch => {
+            return (
+                fetch(baseUrl + '/user', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        dispatch({ type: "ADD_USER_TO_STATE", payload: data})
+                    })
+                    .catch(error => console.error(error))
+            )}
+        }
+}

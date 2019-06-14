@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import App from '../App'
-import LoginForm from '../components/login/LoginForm'
+import UserContainer from './UserContainer'
 import Navbar from '../components/navbar/Navbar'
 import Registration from '../components/user/RegisterUser'
 
@@ -13,7 +13,7 @@ class NavbarContainer extends Component {
                 <div>
                     <Navbar />
                     <Route exact path="/" component={ App } />
-                    <Route exact path='/login' component={ LoginForm } />
+                    <Route exact path='/login' component={ UserContainer } />
                     <Route exact path="/registration" component={ Registration } />
                 </div>
             </Router>

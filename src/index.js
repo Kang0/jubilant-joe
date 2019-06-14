@@ -25,7 +25,8 @@ import userReducer from './reducers/userReducer'
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
-  challenges: challengeReducer
+  challenges: challengeReducer,
+  users: userReducer
 })
 
 const store = createStore(
