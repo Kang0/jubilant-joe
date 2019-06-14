@@ -17,32 +17,30 @@ export const loginUser = userInfo => {
                 if (data.success) {
                     console.log("Sucessfully Logged In")
                     localStorage.setItem("token", data.token)
+                    return getUser(userInfo, localStorage.getItem('token'))
                 } else {
                     this.setState({error: 'Invalid username or password'})
                 }
+            })
+            .then(user => {
+                console.log(user)
+                dispatch( { type: 'SET_USER_STATE', user} )
             })
             .catch(error => console.log("Error " + error))
     )}
 }
 
-export const setUserState = () => {
-    let baseUrl = 'http://localhost:3001'
-    let token = localStorage.getItem('token')
-
-    if (token) {
-        return dispatch => {
-            return (
-                fetch(baseUrl + '/user', {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data)
-                        dispatch({ type: "ADD_USER_TO_STATE", payload: data})
-                    })
-                    .catch(error => console.error(error))
-            )}
-        }
+const getUser = (userInfo, token) => {
+    return fetch('http://localhost:3001/find_user', {
+        method: "POST",
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(userInfo)
+    })
+    .then(resp => resp.json())
+    .then(userJSON => userJSON)
+    .catch(error => error)
 }

@@ -6,7 +6,6 @@ const baseUrl = 'http://localhost:3001'
 class UserPage extends Component {
 
     componentDidMount() {
-        this.props.setUserState()
     }
 
     render() {
