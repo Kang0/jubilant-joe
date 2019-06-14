@@ -19,19 +19,19 @@ export const loginUser = userInfo => {
                     localStorage.setItem("token", data.token)
                     return getUser(userInfo, localStorage.getItem('token'))
                 } else {
-                    this.setState({error: 'Invalid username or password'})
+                    console.log("The returned data was not correct")
                 }
             })
             .then(user => {
                 console.log(user)
-                dispatch( { type: 'SET_USER_STATE', user} )
+                dispatch( { type: 'SET_USER_STATE', payload: user } )
             })
             .catch(error => console.log("Error " + error))
     )}
 }
 
 const getUser = (userInfo, token) => {
-    return fetch('http://localhost:3001/find_user', {
+    return fetch('http://localhost:3001/user/find_user', {
         method: "POST",
         headers: {
             'Access-Control-Allow-Origin': '*',

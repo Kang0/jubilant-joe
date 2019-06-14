@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import ChallengeForm from '../components/challenges/ChallengeForm'
 import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
-import { postChallenge, getChallenges, buttonClickUpdateChallenge } from '../actions/actionChallenge'
+import { postChallenge, getChallenges, buttonClickUpdateChallenge, getUserChallenges } from '../actions/actionChallenge'
 
 class ChallengeContainer extends Component {
 
     componentDidMount() {
-        this.props.getChallenges()
+        this.props.getUserChallenges()
     }
 
     render () {
@@ -30,4 +30,4 @@ const mapStateToProps = state => {
     //challenges will eventually have to filter the only the user's challenges
 }
 
-export default connect(mapStateToProps, { postChallenge, getChallenges, buttonClickUpdateChallenge })(ChallengeContainer)
+export default connect(mapStateToProps, { postChallenge, getChallenges, buttonClickUpdateChallenge, getUserChallenges })(ChallengeContainer)

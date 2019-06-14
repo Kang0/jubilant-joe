@@ -4,9 +4,9 @@ export default function challengeReducer(state = [], action) {
     switch(action.type) {
 
         //GET after mount all user's challenges
-        case 'FETCH_CHALLENGES':
-            console.log("successfully retrieved", action.data)
-            return action.data
+        case 'FETCH_USER_CHALLENGES':
+            console.log("successfully retrieved", action.payload)
+            return action.payload
 
         case 'LOADING_CHALLENGE':
             return [...state]
@@ -20,7 +20,6 @@ export default function challengeReducer(state = [], action) {
             return [...state, action.challenge]
         
         case 'CLICK_BUTTON':
-            debugger;
             return state.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
 
         default:
@@ -49,7 +48,6 @@ const updateDays = data => {
             let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
 
             if (moment(canClickButton).isAfter(challenge.timeToClick)) {
-                debugger;
                 challenge.clicked = false
             }
 

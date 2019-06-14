@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-const baseUrl = 'http://localhost:3001'
+import UserChallenges from '../challenges/userChallenges'
 
 class UserPage extends Component {
 
     componentDidMount() {
+        this.props.getUserChallenges()
     }
 
     render() {
@@ -19,6 +19,7 @@ class UserPage extends Component {
                 ) : (
                     <p>Please Login</p>
                 )}
+                {/* <UserChallenges /> */}
             </div>
         )
     }

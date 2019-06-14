@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 
 import UserPage from '../components/user/UserPage'
 
-import { loginUser } from '../actions/actionUser'
+import { getUserChallenges } from '../actions/actionChallenge'
 
 class UserContainer extends Component {
 
     render() {
         return (
             <div>
-                <UserPage />
+                <UserPage getUserChallenges={ this.props.getUserChallenges } />
             </div>
         )
     }
 
 }
 
-export default connect(null, { loginUser})(UserContainer)
+export default connect(null, { getUserChallenges })(UserContainer)

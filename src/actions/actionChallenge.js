@@ -34,7 +34,7 @@ export const postChallenge = formData => {
 //     }
 // }
 
-//GET user's challenges 
+//GET everyones challenges 
 export const getChallenges = () => {
     let token = localStorage.getItem('token')
     return (dispatch, getState) => {
@@ -47,10 +47,31 @@ export const getChallenges = () => {
         })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data) 
                 dispatch({ type: "FETCH_CHALLENGES", data })})
             .then(data => dispatch({ type: "UPDATE_DAYS" }))
             .catch(error => console.log("Error" + error))
+    }
+}
+
+//Get the logged in user's challenges
+export const getUserChallenges = () => {
+    let token = localStorage.getItem('token')
+    return (dispatch, getState) => {
+        dispatch({ type: "LOADING_CHALLENGE"});
+        return (
+            fetch('http://localhost:3001/user/challenges', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(req => req.json())
+            .then(data => {
+                dispatch({ type: "FETCH_USER_CHALLENGES", payload: data })
+            })
+            .then(data => dispatch({ type: "UPDATE_DAYS" }))
+            .catch(error => console.log("Error" + error))
+        )
     }
 }
 
@@ -72,8 +93,6 @@ export const buttonClickUpdateChallenge = (id) => {
 
             
             const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
-
-            debugger;
             
             return (fetch(postUpdateUrl, {
                 method: "PATCH",
