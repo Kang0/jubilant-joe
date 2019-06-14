@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import LoginForm from '../components/login/LoginForm'
 import UserPage from '../components/user/UserPage'
+
+import { loginUser } from '../actions/actionUser'
 
 class LoginContainer extends Component {
 
@@ -16,4 +19,4 @@ class LoginContainer extends Component {
 
 }
 
-export default LoginContainer
+export default connect(loginUser)(LoginContainer)

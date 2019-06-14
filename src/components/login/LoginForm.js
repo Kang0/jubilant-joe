@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class LoginForm extends Component {
     
@@ -21,27 +22,7 @@ class LoginForm extends Component {
             password: this.state.password
         }
 
-        let url = "http://localhost:3001/login"
-
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(params),
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                console.log("Sucessfully Logged In")
-                localStorage.setItem("token", data.token)
-            } else {
-                this.setState({error: 'Invalid username or password'})
-            }
-        })
-        .catch(error => console.log("Error " + error))
+        this.props.loginUser(params)
     }
 
     render() {

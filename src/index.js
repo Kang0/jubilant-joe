@@ -18,12 +18,15 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 //reducers
-import manageChallenge from './reducers/manageChallenge'
+import challengeReducer from './reducers/challengeReducer'
+import userReducer from './reducers/userReducer'
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const reducers = combineReducers({manageChallenge})
+const reducers = combineReducers({
+  challenges: challengeReducer
+})
 
 const store = createStore(
     reducers,

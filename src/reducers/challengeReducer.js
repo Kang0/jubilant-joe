@@ -1,49 +1,33 @@
 import moment from 'moment';
 
-export default function manageChallenge(state = {
-    challenges: []
-}, action) {
+export default function challengeReducer(state = [], action) {
     switch(action.type) {
 
         //GET after mount all user's challenges
         case 'FETCH_CHALLENGES':
-            console.log("successfully retireved", action.data)
-            return {
-                ...state,
-                challenges: action.data
-            }
+            console.log("successfully retrieved", action.data)
+            return action.data
 
         case 'LOADING_CHALLENGE':
-            return {
-                ...state
-            }
+            return [...state]
 
         case 'UPDATE_DAYS':
             const update = updateDays(state.challenges)
-            return {
-                ...state,
-                challenges: update
-            }
+            return [update]
 
         //event handlers, submit, click
         case 'POST_CHALLENGE':
-            return {
-                ...state,
-                challenges: [...state.challenges, action.challenge]
-            }
+            return [...state.challenges, action.challenge]
         
         case 'CLICK_BUTTON':
-            debugger;
-            return {
-                ...state,
-                challenges: state.challenges.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
-            }
+            return [state.challenges.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)]
 
         default:
             return state
     }
 }
 
+//had to put updateDays here due to the async actions, need to have state loaded first before being able to update the days
 const updateDays = data => {
 
     return (
@@ -73,4 +57,3 @@ const updateDays = data => {
     )
 }
 
-//had to put updateDays here due to the async actions, need to have state loaded first before being able to update the days
