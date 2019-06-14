@@ -12,15 +12,16 @@ export default function challengeReducer(state = [], action) {
             return [...state]
 
         case 'UPDATE_DAYS':
-            const update = updateDays(state.challenges)
-            return [update]
+            const update = updateDays(state)
+            return update
 
         //event handlers, submit, click
         case 'POST_CHALLENGE':
-            return [...state.challenges, action.challenge]
+            return [...state, action.challenge]
         
         case 'CLICK_BUTTON':
-            return [state.challenges.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)]
+            debugger;
+            return state.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
 
         default:
             return state

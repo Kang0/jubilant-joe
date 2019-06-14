@@ -11,7 +11,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <div>
-                <LoginForm />
+                <LoginForm loginUser={this.props.loginUser} />
                 <UserPage />
             </div>
         )
@@ -19,4 +19,4 @@ class LoginContainer extends Component {
 
 }
 
-export default connect(loginUser)(LoginContainer)
+export default connect(null, loginUser)(LoginContainer)

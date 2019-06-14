@@ -59,9 +59,8 @@ export const buttonClickUpdateChallenge = (id) => {
     let token = localStorage.getItem('token')
     return (dispatch, getState) => {
         //grab the current challenge state and filter to get the challenge which was clicked by using id
-        let userChallenges = getState().manageChallenge.challenges
+        let userChallenges = getState().challenges
         let userChallenge = userChallenges.filter(challenge => challenge.id == id)[0]
-
         //grab the current time and set to moment format ("MMM D YY, h:mm a") and add one day to the current time
         const currentTime = moment(new Date()).format("MMM D YY, h:mm a")
         const dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
@@ -71,10 +70,11 @@ export const buttonClickUpdateChallenge = (id) => {
             userChallenge.timeClicked = currentTime
             userChallenge.timeToClick = dayAfterCurrentTime
 
-            debugger;
             
             const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
 
+            debugger;
+            
             return (fetch(postUpdateUrl, {
                 method: "PATCH",
                 body: JSON.stringify(userChallenge),

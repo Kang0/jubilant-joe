@@ -24,11 +24,10 @@ class ChallengeContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    debugger;
     return {
         challenges: state.challenges
     }
     //challenges will eventually have to filter the only the user's challenges
 }
 
-export default connect(mapStateToProps, { postChallenge, getChallenges, buttonClickUpdateChallenge})(ChallengeContainer)
+export default connect(mapStateToProps, { postChallenge, getChallenges, buttonClickUpdateChallenge })(ChallengeContainer)
