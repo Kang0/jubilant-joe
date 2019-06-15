@@ -20,13 +20,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //reducers
 import challengeReducer from './reducers/challengeReducer'
 import userReducer from './reducers/userReducer'
+import lockerReducer from './reducers/lockerReducer'
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
   challenges: challengeReducer,
-  users: userReducer
+  users: userReducer,
+  locker: lockerReducer
 })
 
 const store = createStore(
