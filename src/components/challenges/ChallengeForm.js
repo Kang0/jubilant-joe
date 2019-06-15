@@ -33,7 +33,7 @@ class ChallengeForm extends Component {
 
     getDate = () => {
         const dayCreated = moment(new Date()).format('MM-DD-YYYY')
-        const lastDay = moment(dayCreated, "MM-DD-YYYY").add('days', 100).format('MM-DD-YYYY')
+        const lastDay = moment(dayCreated, "MM-DD-YYYY").add(100, 'days').format('MM-DD-YYYY')
         
         const timeToClick = moment(new Date()).format("MMM D YY, h:mm a")
 
