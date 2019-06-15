@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/actionUser'
 
+//semantic components
+import {
+    Button,
+    Form,
+    Grid,
+    Header,
+    Message,
+    Segment,
+    Container
+} from 'semantic-ui-react';
+
 class LoginForm extends Component {
     
     state = {
@@ -28,14 +39,37 @@ class LoginForm extends Component {
 
     render() {
         return(
-            <div>
-                <form onSubmit={event => this.handleOnSubmit(event)}>
-                    <input type="text" name="username" value={this.state.username} onChange={event => this.handleOnChange(event)} />
-                    <input type="password" name="password" value={this.state.password} onChange={event => this.handleOnChange(event)} />
-                    <input type="submit" value="Login" />
-                </form>
-                <span>{this.state.error}</span>
-            </div>
+            <Container>
+                <Grid centered columns={2}>
+                    <Grid.Column>
+                        <Header as="h2" textAlign="center">
+                            Login
+                        </Header>
+                        <Segment>
+                            <Form size="large">
+                                <Form.Input
+                                    fluid
+                                    icon="user"
+                                    iconPosition="left"
+                                    placeholder="Username"
+                                    onChange={this.handleOnChange}
+                                    name="username"
+                                />
+                                <Form.Input
+                                    fluid
+                                    icon="lock"
+                                    iconPosition="left"
+                                    placeholder="Password"
+                                    type="password"
+                                    onChange={this.handleOnChange}
+                                    name="password"
+                                />
+                            </Form>
+                        </Segment>
+                    </Grid.Column>
+                </Grid>
+            </Container>
+            
         )
     }
 
