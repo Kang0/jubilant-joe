@@ -6,6 +6,8 @@ import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
 import { postChallenge, getChallenges, buttonClickUpdateChallenge, getUserChallenges } from '../actions/actionChallenge'
 import { clickAddTwoCurrency, getLocker } from '../actions/actionLocker'
+//import semantic ui
+import { Container, Grid, Segment } from 'semantic-ui-react'
 
 class ChallengeContainer extends Component {
 
@@ -16,14 +18,23 @@ class ChallengeContainer extends Component {
 
     render () {
         return (
-            <div>
-                <ChallengeForm postChallenge={this.props.postChallenge} />
-                <DisplayChallenges 
-                    challenges={this.props.challenges}
-                    buttonClick={this.props.buttonClickUpdateChallenge}
-                    clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
-                />
-            </div>
+            <React.Fragment>
+                <Container>
+                    <Segment>
+                        <DisplayChallenges 
+                            challenges={this.props.challenges}
+                            buttonClick={this.props.buttonClickUpdateChallenge}
+                            clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
+                        />
+                    </Segment>
+                </Container>
+                <Container>
+                    <Segment>
+                        <ChallengeForm postChallenge={this.props.postChallenge} />
+                    </Segment>
+                </Container>
+            </React.Fragment>
+
         )
     }
 

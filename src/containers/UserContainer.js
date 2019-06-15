@@ -6,6 +6,8 @@ import UserLocker from '../components/user/UserLocker'
 import { getLocker } from '../actions/actionLocker'
 import { getUser } from '../actions/actionUser'
 
+import { Container, Grid, Segment } from 'semantic-ui-react'
+
 class UserContainer extends Component {
 
     componentDidMount() {
@@ -15,10 +17,10 @@ class UserContainer extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <UserLocker locker={ this.props.locker }/>
                 <UserPage user={ this.props.user } />
-            </div>
+            </Container>
         )
     }
 }
