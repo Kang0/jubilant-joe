@@ -6,6 +6,11 @@ export default function lockerReducer(state = {
             let { currency } = action.payload
             return { currency }
 
+        case "UPDATE_LOCKER":
+            return {
+                currency: action.payload
+            }
+
         default:
             return state
     }

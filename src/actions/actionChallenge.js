@@ -15,7 +15,11 @@ export const postChallenge = formData => {
                     }
                 })
                 .then(resp => resp.json())
-                .then(challenge => {dispatch({ type: "POST_CHALLENGE", challenge })})
+                .then(data => {
+                    debugger;
+                    dispatch({ type: "POST_CHALLENGE", payload: data.challenge })
+                    dispatch({ type: "UPDATE_LOCKER", payload: data.locker })
+                })
                 .catch(error => console.log("Error" + error))
     }
 }
@@ -23,6 +27,7 @@ export const postChallenge = formData => {
 //GET everyones challenges 
 export const getChallenges = () => {
     let token = localStorage.getItem('token')
+
     return (dispatch, getState) => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return fetch('http://localhost:3001/api/v1/challenges.json', {
@@ -76,7 +81,6 @@ export const buttonClickUpdateChallenge = (id) => {
             userChallenge.clicked = true
             userChallenge.timeClicked = currentTime
             userChallenge.timeToClick = dayAfterCurrentTime
-
             
             const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
             

@@ -17,9 +17,10 @@ export default function challengeReducer(state = [], action) {
 
         //event handlers, submit, click
         case 'POST_CHALLENGE':
-            return [...state, action.challenge]
+            return [...state, action.payload]
         
         case 'CLICK_BUTTON':
+            debugger;
             return state.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
 
         default:

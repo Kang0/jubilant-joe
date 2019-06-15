@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/actionUser'
-
-//semantic components
 import {
     Button,
     Form,
@@ -11,13 +7,16 @@ import {
     Message,
     Segment,
     Container
-} from 'semantic-ui-react';
+} from 'semantic-ui-react'
 
-class LoginForm extends Component {
-    
-    state = {
+
+class RegisterForm extends Component {
+
+    state ={
         username: '',
-        password: ''
+        email: '',
+        password: '',
+        register: ''
     }
 
     handleOnChange = event => {
@@ -30,20 +29,52 @@ class LoginForm extends Component {
         event.preventDefault()
 
         let params = {
-            username: this.state.username,
-            password: this.state.password
+            user: {
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            }
         }
 
-        this.props.loginUser(params)
+        fetch('http://localhost:3001/registration', {
+            method: "POST",
+            body: JSON.stringify(params),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status) {
+                console.log(data)
+                this.setState({
+                    register: data.status
+                })
+            } else {
+                console.log("Unable to create user")
+                this.setState({
+                    register: "Unable to register at this time"
+                })
+            }
+        })
+        .catch(error => console.log("There was an error" + error))
+
+        this.setState({
+            username: '',
+            email: '',
+            password: ''
+        })
     }
 
     render() {
-        return(
+        return (
             <Container>
                 <Grid centered columns={2}>
                     <Grid.Column>
                         <Header as="h2" textAlign="center">
-                            Login
+                            User Registration
                         </Header>
                         <Segment>
                             <Form size="large" onSubmit={event => this.handleOnSubmit(event)}>
@@ -54,6 +85,14 @@ class LoginForm extends Component {
                                     placeholder="Username"
                                     onChange={event => this.handleOnChange(event)}
                                     name="username"
+                                />
+                                <Form.Input
+                                    fluid
+                                    icon="mail outline"
+                                    iconPosition="left"
+                                    placeholder="Email"
+                                    onChange={event => this.handleOnChange(event)}
+                                    name="email"
                                 />
                                 <Form.Input
                                     fluid
@@ -68,7 +107,7 @@ class LoginForm extends Component {
                             </Form>
                         </Segment>
                         <Message>
-                            Not registered yet? <a href="/registration">Register</a>
+                            PLACEHOLDER
                         </Message>
                     </Grid.Column>
                 </Grid>
@@ -77,4 +116,4 @@ class LoginForm extends Component {
     }
 }
 
-export default connect(null, { loginUser })(LoginForm)
+export default RegisterForm
