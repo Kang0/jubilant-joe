@@ -64,8 +64,12 @@ class LoginForm extends Component {
                                     onChange={this.handleOnChange}
                                     name="password"
                                 />
+                                <Button type="submit">Submit</Button>
                             </Form>
                         </Segment>
+                        <Message>
+                            Not registered yet? <a href="/registration">Register</a>
+                        </Message>
                     </Grid.Column>
                 </Grid>
             </Container>
