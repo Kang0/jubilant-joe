@@ -27,7 +27,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
   challenges: challengeReducer,
-  users: userReducer,
+  user: userReducer,
   locker: lockerReducer
 })
 

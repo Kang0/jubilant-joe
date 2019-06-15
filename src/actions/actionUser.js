@@ -17,30 +17,26 @@ export const loginUser = userInfo => {
                 if (data.success) {
                     console.log("Sucessfully Logged In")
                     localStorage.setItem("token", data.token)
-                    return getUser(userInfo, localStorage.getItem('token'))
                 } else {
                     console.log("The returned data was not correct")
                 }
             })
-            .then(user => {
-                console.log(user)
-                dispatch( { type: 'SET_USER_STATE', payload: user } )
-            })
-            .catch(error => console.log("Error " + error))
     )}
 }
 
-const getUser = (userInfo, token) => {
-    return fetch('http://localhost:3001/user/find_user', {
-        method: "POST",
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(userInfo)
-    })
-    .then(resp => resp.json())
-    .then(userJSON => userJSON)
-    .catch(error => error)
+export const getUser = () => {
+    let token = localStorage.getItem('token')
+    return dispatch => {
+        return(
+            fetch('http://localhost:3001/user/find_user', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(user => dispatch( { type: 'SET_USER_STATE', payload: user } ))
+            .catch(error => error)
+        )}
 }
+

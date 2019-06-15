@@ -15,6 +15,7 @@ class NavbarContainer extends Component {
                 <div>
                     <Navbar />
                     <Route exact path="/" component={ ChallengeContainer } />
+                    <Route exact path="/userpage" component={ UserContainer } />
                     <Route exact path='/login' component={ LoginForm } />
                     <Route exact path="/registration" component={ Registration } />
                 </div>

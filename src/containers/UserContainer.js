@@ -3,15 +3,21 @@ import { connect } from 'react-redux'
 
 import UserPage from '../components/user/UserPage'
 import UserLocker from '../components/user/UserLocker'
-import { getUserChallenges } from '../actions/actionChallenge'
+import { getLocker } from '../actions/actionLocker'
+import { getUser } from '../actions/actionUser'
 
 class UserContainer extends Component {
+
+    componentDidMount() {
+        this.props.getUser()
+        this.props.getLocker()
+    }
 
     render() {
         return (
             <div>
-                <UserLocker props={ this.props.locker }/>
-                <UserPage getUserChallenges={ this.props.getUserChallenges } />
+                <UserLocker locker={ this.props.locker }/>
+                <UserPage user={ this.props.user } />
             </div>
         )
     }
@@ -19,8 +25,9 @@ class UserContainer extends Component {
 
 const mapStateToProps = state => {
     return{
+        user: state.user,
         locker: state.locker
     }
 }
 
-export default connect(mapStateToProps, { getUserChallenges })(UserContainer)
+export default connect(mapStateToProps, { getLocker, getUser })(UserContainer)

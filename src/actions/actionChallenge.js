@@ -20,20 +20,6 @@ export const postChallenge = formData => {
     }
 }
 
-//GET user's information
-// export const getUser = () => {
-//     let token = localStorage.getItem('token')
-//     return dispatch => {
-//         return fetch('http://localhost:3001/user/challenges', {
-//             method: "GET",
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//                 'key': `${token}`
-//             }
-//         })
-//     }
-// }
-
 //GET everyones challenges 
 export const getChallenges = () => {
     let token = localStorage.getItem('token')

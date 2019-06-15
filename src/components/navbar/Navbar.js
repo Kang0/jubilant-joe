@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
 
     const link = {
-        width: '100px',
-        padding: '12px',
+        width: '150px',
+        padding: '8px',
         margin: '0 6px 6px',
         background: 'blue',
         textDecoration: 'none',
@@ -25,7 +25,17 @@ const Navbar = () => {
                 background: 'darkblue'
             }}
             >Home</NavLink>
-            
+            <NavLink
+            to="/userpage"
+            /* set exact so it knows to only set activeStyle when route is deeply equal to link */
+            exact
+            /* add styling to Navlink */
+            style={link}
+            /* add prop for activeStyle */
+            activeStyle={{
+                background: 'darkblue'
+            }}
+            >User Page</NavLink>
             <NavLink
             to="/about"
             exact
