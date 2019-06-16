@@ -12,7 +12,7 @@ class DisplayChallenges extends Component {
         this.props.clickAddTwoCurrency()
     }
 
-    handleCardClick = (event, titleProps) => {
+    handleCardClick = (event, titleProps = { index: 0 }) => {
         const { index } = titleProps
         const { activeIndex } = this.state
         const newIndex = activeIndex === index ? -1 : index

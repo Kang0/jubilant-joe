@@ -17,7 +17,7 @@ const ChallengeCard = ({ handleCardClick, challenge, handleOnButtonClick }) => {
                     challenge.clicked ? 
                         <Button basic color="red" disabled>Already completed for the day</Button>
                         :
-                        <Button basic color="green" id={challenge.id} onClick={e=>handleOnButtonClick(e)}>I completed this today</Button>                               
+                        <Button basic color="green" id={challenge.id} onClick={e=>handleOnButtonClick(e)}>I completed this today</Button>
                 }
             </Card.Content>
         </Card>
