@@ -19,22 +19,23 @@ class ChallengeContainer extends Component {
     render () {
         return (
             <React.Fragment>
-                <Container>
-                    <Segment>
-                        <DisplayChallenges 
-                            challenges={this.props.challenges}
-                            buttonClick={this.props.buttonClickUpdateChallenge}
-                            clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
-                        />
-                    </Segment>
-                </Container>
-                <Container>
-                    <Segment>
-                        <ChallengeForm postChallenge={this.props.postChallenge} />
-                    </Segment>
-                </Container>
+                <Grid padded>
+                    <Grid.Row centered>
+                        <Segment>
+                            <DisplayChallenges 
+                                challenges={this.props.challenges}
+                                buttonClick={this.props.buttonClickUpdateChallenge}
+                                clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
+                            />
+                        </Segment>
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <Segment>
+                            <ChallengeForm postChallenge={this.props.postChallenge} />
+                        </Segment>
+                    </Grid.Row>
+                </Grid>
             </React.Fragment>
-
         )
     }
 
