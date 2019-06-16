@@ -7,7 +7,7 @@ export const postChallenge = formData => {
 
     let start = moment(formData.dayCreated, "MM-DD-YYYY")
     let calendar = []
-    for (let i=1; i < 100; i++) {
+    for (let i=0; i < 101; i++) {
         let {years, months, date } = start.toObject()
         let calendarDate = { years, months, date }
         start = start.add(1, 'd')
@@ -34,21 +34,6 @@ export const postChallenge = formData => {
                 .catch(error => console.log("Error" + error))
     }
 }
-
-//CREATE new calendar to send back with posting Challenge
-
-export const createCalendar = (startDate, endDate) => {
-    let start = moment(startDate, "MM-DD-YYYY")
-    let calendar = []
-    for (let i=1; i < 100; i++) {
-        let {years, months, date } = start.toObject()
-        let calendarDate = { years, months, date }
-        start = start.add(1, 'd')
-        calendar.push(calendarDate)
-    }
-}
-
-
 
 //GET everyones challenges 
 export const getChallenges = () => {
