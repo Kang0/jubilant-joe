@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card, Button } from 'semantic-ui-react';
 
 class DisplayChallenges extends Component {
 
@@ -10,30 +11,32 @@ class DisplayChallenges extends Component {
     
     render() {
         const renderChallenge = this.props.challenges.map(challenge => {
-            if(challenge.clicked) {
-                return (
-                    <div>
-                        <li key={challenge.id}>
-                            {challenge.name} - {challenge.daysLeft}
-                            <button value="disable" disabled>Already completed for the day</button>
-                        </li>
-                    </div>
-                )
-            } else {
-                return (
-                    <div>
-                        <li key={challenge.id}>
-                            {challenge.name} - {challenge.daysLeft}
-                            <button id={challenge.id} onClick={event => this.handleOnClick(event)}>I did this today</button>
-                        </li>
-                    </div>
-                )
-            }
-        })
+            return(
+                <Card>
+                    <Card.Content>
+                        <Card.Header>{challenge.name}</Card.Header>
+                        <Card.Meta>You have {challenge.daysLeft} days to go!</Card.Meta>
+                        <Card.Description>
+                            This is placeholder text until I can update this.
+                        </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                        {
+                            challenge.clicked ? 
+                                <Button basic color="red" disabled>Already completed for the day</Button>
+                                :
+                                <Button basic color="green" id={challenge.id} onClick={e=>this.handleOnClick(e)}>I completed this today</Button>                               
+                        }
+                    </Card.Content>
+                </Card>
+            )
+        }) 
 
         return(
             <div>
-                {renderChallenge}
+                <Card.Group>
+                    {renderChallenge}
+                </Card.Group>
             </div>
         )
     }

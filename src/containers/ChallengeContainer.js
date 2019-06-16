@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ChallengeForm from '../components/challenges/ChallengeForm'
 import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
-import { postChallenge, getChallenges, buttonClickUpdateChallenge, getUserChallenges } from '../actions/actionChallenge'
+import { postChallenge, getChallenges, buttonClickUpdateChallenge, getUserChallenges, createCalendar } from '../actions/actionChallenge'
 import { clickAddTwoCurrency, getLocker } from '../actions/actionLocker'
 //import semantic ui
 import { Container, Grid, Segment } from 'semantic-ui-react'
@@ -14,6 +14,7 @@ class ChallengeContainer extends Component {
     componentDidMount() {
         this.props.getUserChallenges()
         this.props.getLocker()
+        // this.props.createCalendar("06-15-2019", "09-20-2019") //takeout
     }
 
     render () {
@@ -21,13 +22,11 @@ class ChallengeContainer extends Component {
             <React.Fragment>
                 <Grid padded>
                     <Grid.Row centered>
-                        <Segment>
-                            <DisplayChallenges 
-                                challenges={this.props.challenges}
-                                buttonClick={this.props.buttonClickUpdateChallenge}
-                                clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
-                            />
-                        </Segment>
+                        <DisplayChallenges 
+                            challenges={this.props.challenges}
+                            buttonClick={this.props.buttonClickUpdateChallenge}
+                            clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
+                        />
                     </Grid.Row>
                     <Grid.Row centered>
                         <Segment>
@@ -54,6 +53,7 @@ export default connect(mapStateToProps, {
     buttonClickUpdateChallenge,
     getUserChallenges,
     clickAddTwoCurrency,
-    getLocker 
+    getLocker,
+    createCalendar
     })
     (ChallengeContainer)

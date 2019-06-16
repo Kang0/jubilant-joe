@@ -2,12 +2,23 @@ import moment from 'moment'
 
 //POST new user challenge to the db
 export const postChallenge = formData => {
+    //Grab the logged in user's token    
     let token = localStorage.getItem('token')
+
+    let start = moment(formData.dayCreated, "MM-DD-YYYY")
+    let calendar = []
+    for (let i=1; i < 100; i++) {
+        let {years, months, date } = start.toObject()
+        let calendarDate = { years, months, date }
+        start = start.add(1, 'd')
+        calendar.push(calendarDate)
+    }
+
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return fetch('http://localhost:3001/api/v1/challenges.json', {
                     method: 'POST',
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify({challenge: formData, calendar: calendar}),
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
@@ -16,13 +27,28 @@ export const postChallenge = formData => {
                 })
                 .then(resp => resp.json())
                 .then(data => {
-                    debugger;
+                    // createCalendar(data.challenge.dayCreated, data.challenge.lastDay)
                     dispatch({ type: "POST_CHALLENGE", payload: data.challenge })
                     dispatch({ type: "UPDATE_LOCKER", payload: data.locker })
                 })
                 .catch(error => console.log("Error" + error))
     }
 }
+
+//CREATE new calendar to send back with posting Challenge
+
+export const createCalendar = (startDate, endDate) => {
+    let start = moment(startDate, "MM-DD-YYYY")
+    let calendar = []
+    for (let i=1; i < 100; i++) {
+        let {years, months, date } = start.toObject()
+        let calendarDate = { years, months, date }
+        start = start.add(1, 'd')
+        calendar.push(calendarDate)
+    }
+}
+
+
 
 //GET everyones challenges 
 export const getChallenges = () => {
@@ -76,6 +102,7 @@ export const buttonClickUpdateChallenge = (id) => {
         //grab the current time and set to moment format ("MMM D YY, h:mm a") and add one day to the current time
         const currentTime = moment(new Date()).format("MMM D YY, h:mm a")
         const dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
+        debugger;
 
         if (moment(currentTime).isAfter(userChallenge.timeToClick)) {
             userChallenge.clicked = true
