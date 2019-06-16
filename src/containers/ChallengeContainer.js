@@ -9,12 +9,12 @@ import { clickAddTwoCurrency, getLocker } from '../actions/actionLocker'
 //import semantic ui
 import { Container, Grid, Segment } from 'semantic-ui-react'
 
+
 class ChallengeContainer extends Component {
 
     componentDidMount() {
         this.props.getUserChallenges()
         this.props.getLocker()
-
     }
 
     render () {

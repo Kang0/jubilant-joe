@@ -5,6 +5,7 @@ export const postChallenge = formData => {
     //Grab the logged in user's token    
     let token = localStorage.getItem('token')
 
+    //creating the 100 days of calendar dates to be created in the server
     let start = moment(formData.dayCreated, "MM-DD-YYYY")
     let calendar = []
     for (let i=0; i < 101; i++) {
@@ -27,7 +28,6 @@ export const postChallenge = formData => {
                 })
                 .then(resp => resp.json())
                 .then(data => {
-                    // createCalendar(data.challenge.dayCreated, data.challenge.lastDay)
                     dispatch({ type: "POST_CHALLENGE", payload: data.challenge })
                     dispatch({ type: "UPDATE_LOCKER", payload: data.locker })
                 })
@@ -58,7 +58,7 @@ export const getChallenges = () => {
 //Get the logged in user's challenges
 export const getUserChallenges = () => {
     let token = localStorage.getItem('token')
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return (
             fetch('http://localhost:3001/user/challenges', {
@@ -69,9 +69,10 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
+                debugger;
                 dispatch({ type: "FETCH_USER_CHALLENGES", payload: data })
             })
-            .then(data => dispatch({ type: "UPDATE_DAYS" }))
+            .then(data => dispatch({ type: "UPDATE_DAYS" }))//once the user challenges is received, then we can update the days accordingly
             .catch(error => console.log("Error" + error))
         )
     }

@@ -39,7 +39,7 @@ const updateDays = data => {
             let lastDay = moment(challenge.lastDay)
 
             if (moment(currentDate).isSameOrBefore(lastDay._i)) {
-                let diff = 100 - moment(currentDate).diff(dayCreated, 'days') //change t to dayCreated._i
+                let diff = 100 - moment(currentDate).diff(dayCreated, 'days')
         
                 if (challenge.daysLeft !== diff) {
                     challenge.daysLeft = diff

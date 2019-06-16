@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
 import { Card, Accordion } from 'semantic-ui-react'
 
+
 class DisplayChallenges extends Component {
 
     state = { activeIndex: 0 } //keeping track of which accordion is open
