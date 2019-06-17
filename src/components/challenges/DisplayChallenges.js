@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
 import { Card, Accordion } from 'semantic-ui-react'
-import ChallengeCalendar from './ChallengeCalendar'
+import ChallengeCalendar from '../calendar/ChallengeCalendar'
 import '../../App.css'
 
 

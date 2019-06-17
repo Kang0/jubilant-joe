@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import DisplayCalendar from '../calendar/DisplayCalendar'
-import { Grid, Segment, Divider } from 'semantic-ui-react'
+import DisplayCalendar from './DisplayCalendar'
+import { Grid } from 'semantic-ui-react'
 
 class ChallengeCalendar extends Component {
     render() {

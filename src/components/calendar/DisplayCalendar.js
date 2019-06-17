@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css'
+import './Calendar.css'
 import moment from 'moment'
 import { Table } from 'semantic-ui-react'
 
@@ -31,18 +31,30 @@ const DisplayCalendar = ({ dates }) => {
         )
     }
 
-    let handleOnClick = () => {
+    //test to see if handle on click with a cell works!!!
+    let handleOnClick = (e, month) => {
         debugger;
     }
 
     //creating array with individual cells <td> with number date
     let daysInMonth = dates.map((date, index) => {
         let day = moment(date).format("DD")
-        return(
-            <Table.Cell collapsing onClick={handleOnClick}>
-                {day}
-            </Table.Cell>
-        )
+        let current_day = moment()
+
+        //if the date is the same as the current day, it highlights the cell as blue
+        if (date.isSame(current_day, 'day')){
+            return(
+                <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)} className="current-day">
+                    {day}
+                </Table.Cell>
+            )
+        } else {
+            return(
+                <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)}>
+                    {day}
+                </Table.Cell>
+            )
+        }
     })
 
     //use spread operator to copy over the blanks and days into one array
