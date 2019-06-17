@@ -69,7 +69,6 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
-                debugger;
                 dispatch({ type: "FETCH_USER_CHALLENGES", payload: data })
             })
             .then(data => dispatch({ type: "UPDATE_DAYS" }))//once the user challenges is received, then we can update the days accordingly

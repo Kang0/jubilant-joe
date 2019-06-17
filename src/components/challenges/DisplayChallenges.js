@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
 import { Card, Accordion } from 'semantic-ui-react'
+import ChallengeCalendar from './ChallengeCalendar'
 
 
 class DisplayChallenges extends Component {
@@ -18,8 +19,6 @@ class DisplayChallenges extends Component {
         const { activeIndex } = this.state
         const newIndex = activeIndex === index ? -1 : index
 
-        debugger;
-
         this.setState({ activeIndex: newIndex })
     }
     
@@ -34,9 +33,7 @@ class DisplayChallenges extends Component {
                         <ChallengeCard challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>
-                        <p>
-                            This content will hopefully be filled with a working calendar object and some more information about the challenge.
-                        </p>
+                        <ChallengeCalendar dates={challenge.calendars} />
                     </Accordion.Content>
                 </React.Fragment>
             )

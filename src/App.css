@@ -31,3 +31,24 @@
     transform: rotate(360deg);
   }
 }
+
+#calendar{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 1024px;
+  width: 100%;
+}
+
+#calendar > *{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#calendar > *::before{
+  content: "";
+  display: inline-block;
+  height: 0;
+  padding-bottom: 100%;
+  width: 1px;
+}
