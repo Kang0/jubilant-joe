@@ -25,7 +25,9 @@ const DisplayCalendar = ({ dates }) => {
     let blanks = []
     for (let i=0; i < firstDay; i++) {
         blanks.push(
-            <td className="calendar-day empty">{""}</td>
+            <Table.Cell collapsing>
+                {""}
+            </Table.Cell>
         )
     }
 
@@ -33,9 +35,9 @@ const DisplayCalendar = ({ dates }) => {
     let daysInMonth = dates.map((date, index) => {
         let day = moment(date).format("DD")
         return(
-            <td key={index} className="calendar-day">
+            <Table.Cell collapsing>
                 {day}
-            </td>
+            </Table.Cell>
         )
     })
 
@@ -64,7 +66,7 @@ const DisplayCalendar = ({ dates }) => {
 
     //map over rows to be nested in between tablerows (tr)
     let finalCalendar = rows.map((d, i) => {
-        return <tr>{d}</tr>
+        return <Table.Row>{d}</Table.Row>
     })
     //maybe update tr into semantic table rows
 

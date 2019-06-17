@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
 import { Card, Accordion } from 'semantic-ui-react'
 import ChallengeCalendar from './ChallengeCalendar'
+import '../../App.css'
 
 
 class DisplayChallenges extends Component {
@@ -29,7 +30,7 @@ class DisplayChallenges extends Component {
         const renderChallenge = this.props.challenges.map(challenge => {
             return(
                 <React.Fragment>
-                    <Accordion.Title active={activeIndex === challenge.id} index={challenge.id} onClick={this.handleCardClick}>
+                    <Accordion.Title active={activeIndex === challenge.id} index={challenge.id} onClick={this.handleCardClick} >
                         <ChallengeCard challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>

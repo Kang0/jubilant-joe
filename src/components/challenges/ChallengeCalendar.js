@@ -38,13 +38,11 @@ class ChallengeCalendar extends Component {
         //I want to have each day as a single object that we can do things with
         return (
             <React.Fragment>
-                <Segment>
-                    <Grid columns={4}>
-                        <Grid.Row>
-                            {renderCalendars}
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
+                <Grid columns={4}>
+                    <Grid.Row>
+                        {renderCalendars}
+                    </Grid.Row>
+                </Grid>
             </React.Fragment>
         )
     }
