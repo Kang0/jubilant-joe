@@ -31,11 +31,15 @@ const DisplayCalendar = ({ dates }) => {
         )
     }
 
+    let handleOnClick = () => {
+        debugger;
+    }
+
     //creating array with individual cells <td> with number date
     let daysInMonth = dates.map((date, index) => {
         let day = moment(date).format("DD")
         return(
-            <Table.Cell collapsing>
+            <Table.Cell collapsing onClick={handleOnClick}>
                 {day}
             </Table.Cell>
         )
