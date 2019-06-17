@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DisplayCalendar from '../calendar/DisplayCalendar'
+import { Grid } from 'semantic-ui-react'
 
 class ChallengeCalendar extends Component {
     render() {
@@ -36,7 +37,9 @@ class ChallengeCalendar extends Component {
         return (
             <React.Fragment>
                 <p>Hi!</p>
-                {renderCalendars}
+                <Grid>
+                    {renderCalendars}
+                </Grid>
             </React.Fragment>
         )
     }

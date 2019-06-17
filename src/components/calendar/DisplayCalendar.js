@@ -5,15 +5,17 @@ import moment from 'moment'
 
 const DisplayCalendar = ({ dates }) => {
 
-    let weekdayShort = moment.weekdaysShort()
-
-    let weekdayShortName = weekdayShort.map(day => {
+    //use moment js to get an array of abb weekday names
+    //map over array and set table headers as each day of the week
+    let weekdayShortName = moment.weekdaysShort().map(day => {
         return (
             <th key={day} className='week-day'>
                 {day}
             </th>
         )
     })
+
+    let month = moment(dates[0]).format("MMMM")
 
     //how many days are blank before the first of the month
     let firstDay = moment(dates[0]).startOf("month").format("d")
@@ -26,7 +28,7 @@ const DisplayCalendar = ({ dates }) => {
         )
     }
 
-    //creating array with <td> with number date
+    //creating array with individual cells <td> with number date
     let daysInMonth = dates.map((date, index) => {
         let day = moment(date).format("DD")
         return(
@@ -36,23 +38,30 @@ const DisplayCalendar = ({ dates }) => {
         )
     })
 
+    //use spread operator to copy over the blanks and days into one array
     let totalSlots = [...blanks, ...daysInMonth]
+    //set these to blank 
     let rows =[]
     let cells = []
 
     totalSlots.forEach((row, i) => {
-        if (i % 7 !== 0) {
+        if (i % 7 !== 0) { 
+            //push each value in totalSlots to the empty cells array
             cells.push(row)
         } else {
+            //once we reach the 7th index, we push the single week we created in cells to rows
+            //then we set cells as a blank array and push the value into cells and redo the process until...
             rows.push(cells)
             cells=[]
             cells.push(row)
         }
         if (i === totalSlots.length - 1) {
+            //once we reach the final index we push what we have in cells to the rows
             rows.push(cells)
         }
     })
 
+    //map over rows to be nested in between tablerows (tr)
     let finalCalendar = rows.map((d, i) => {
         return <tr>{d}</tr>
     })
@@ -61,6 +70,7 @@ const DisplayCalendar = ({ dates }) => {
         <div>
             <table className="calendar-day">
                 <thead>
+                    <tr>{month}</tr>
                     <tr>{weekdayShortName}</tr>
                 </thead>
                 <tbody>{finalCalendar}</tbody>
