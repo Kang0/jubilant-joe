@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DisplayCalendar from '../calendar/DisplayCalendar'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Segment, Divider } from 'semantic-ui-react'
 
 class ChallengeCalendar extends Component {
     render() {
@@ -29,17 +29,22 @@ class ChallengeCalendar extends Component {
         //iterate over each month and return each month's calendar object to render
         const renderCalendars = monthArrays.map(month => {
             return (
-                <DisplayCalendar dates={month} />
+                <Grid.Column>
+                    <DisplayCalendar dates={month} />
+                </Grid.Column>
             )
         })
 
         //I want to have each day as a single object that we can do things with
         return (
             <React.Fragment>
-                <p>Hi!</p>
-                <Grid>
-                    {renderCalendars}
-                </Grid>
+                <Segment>
+                    <Grid columns={4}>
+                        <Grid.Row>
+                            {renderCalendars}
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
             </React.Fragment>
         )
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css'
 import moment from 'moment'
+import { Table } from 'semantic-ui-react'
 
 
 const DisplayCalendar = ({ dates }) => {
@@ -9,9 +10,9 @@ const DisplayCalendar = ({ dates }) => {
     //map over array and set table headers as each day of the week
     let weekdayShortName = moment.weekdaysShort().map(day => {
         return (
-            <th key={day} className='week-day'>
+            <Table.Cell collapsing>
                 {day}
-            </th>
+            </Table.Cell>
         )
     })
 
@@ -65,17 +66,24 @@ const DisplayCalendar = ({ dates }) => {
     let finalCalendar = rows.map((d, i) => {
         return <tr>{d}</tr>
     })
+    //maybe update tr into semantic table rows
 
     return (
-        <div>
-            <table className="calendar-day">
-                <thead>
-                    <tr>{month}</tr>
-                    <tr>{weekdayShortName}</tr>
-                </thead>
-                <tbody>{finalCalendar}</tbody>
-            </table>
-        </div>
+        //<Table collapsing> - only takes up as much space as its rows
+        <Table celled striped collapsing>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell colSpan='7'>{month}</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+                <Table.Row>
+                    {weekdayShortName}
+                </Table.Row>
+                {finalCalendar}
+            </Table.Body>
+        </Table>
     )
 }
 
