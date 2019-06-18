@@ -17,11 +17,11 @@ class CalendarContainer extends Component {
         let uniqueYears = []
         let startDate = moment()
         let endDate = moment()
+        let calendarObject = {}
 
         if(this.props.calendar.length > 0) {
             //set the variables once this.props.calendar is set in state
-            debugger;
-            uniqueMonths = [...new Set(calendarDates[challengeId].map(date => date.months + 1))]
+            uniqueMonths = [...new Set(calendarDates[challengeId].map(date => date.months))]
             uniqueYears = [...new Set(calendarDates[challengeId].map(date => date.years ))]
 
             //passing in startDate and endDate to highlight on calendar
@@ -29,11 +29,10 @@ class CalendarContainer extends Component {
             endDate = calendarDates[challengeId][100]
 
             //create new Object that has keys for each month and the values are the challenge days in that specific month
-            let calendarObject = new Object()
-            uniqueMonths.forEach(month => calendarObject[month] = {})
+            uniqueMonths.forEach(month => calendarObject[month] = [])
 
-            let clickableDates = calendarDates[challengeId].map(date => {
-                calendarObject[date.months + 1] += date
+            calendarDates[challengeId].forEach(date => {
+                calendarObject[date.months].push(date)
             })
         }
 
@@ -60,12 +59,16 @@ class CalendarContainer extends Component {
         })
 
         //iterate over each month and return each month's calendar object to render
-        const renderCalendars = (monthArrays, startDate, endDate) => {
+        const renderCalendars = (monthArrays, startDate, endDate, calendarObject) => {
 
             return (monthArrays.map(month => {
+                
+                let numberMonth = month[0].format('M')
+                let userCalendarCells = calendarObject[numberMonth]
+
                 return (
-                    <Grid.Column key={month[0].format('M')}>
-                        <DisplayCalendar key={month[0].format('M')} dates={month} startDate={startDate} endDate={endDate} />
+                    <Grid.Column key={numberMonth}>
+                        <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
                     </Grid.Column>
                 )
             })
@@ -75,7 +78,7 @@ class CalendarContainer extends Component {
         return (
             <Grid columns={4}>
                 <Grid.Row>
-                    {renderCalendars(monthArrays, startDate, endDate)}
+                    {renderCalendars(monthArrays, startDate, endDate, calendarObject)}
                 </Grid.Row>
             </Grid>
         )

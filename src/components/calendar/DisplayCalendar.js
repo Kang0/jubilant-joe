@@ -4,7 +4,9 @@ import moment from 'moment'
 import { Table } from 'semantic-ui-react'
 
 
-const DisplayCalendar = ({ dates, startDate, endDate }) => {
+const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
+
+    debugger;
 
     //use moment js to get an array of abb weekday names
     //map over array and set table headers as each day of the week

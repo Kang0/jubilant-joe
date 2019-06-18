@@ -72,7 +72,6 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
-                debugger;
                 dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
                 return data
             })
