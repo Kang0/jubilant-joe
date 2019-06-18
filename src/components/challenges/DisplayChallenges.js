@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
 import { Accordion, Button } from 'semantic-ui-react'
-import ChallengeCalendar from '../calendar/ChallengeCalendar'
+import ChallengeCalendar from '../../containers/CalendarContainer'
 import '../../App.css'
 
 
@@ -32,6 +32,7 @@ class DisplayChallenges extends Component {
         const { activeIndex } = this.state
         
         const renderChallenge = this.props.challenges.map(challenge => {
+            debugger;
             return(
                 <Accordion key={challenge.id} fluid styled>
                     <Accordion.Title active={activeIndex === challenge.id} index={challenge.id} onClick={this.handleCardClick} >

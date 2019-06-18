@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import DisplayCalendar from './DisplayCalendar'
+import DisplayCalendar from '../components/calendar/DisplayCalendar'
 import { Grid } from 'semantic-ui-react'
 
 class ChallengeCalendar extends Component {
