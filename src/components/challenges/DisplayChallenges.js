@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
-import { Card, Accordion } from 'semantic-ui-react'
+import { Card, Accordion, Button } from 'semantic-ui-react'
 import ChallengeCalendar from '../calendar/ChallengeCalendar'
 import '../../App.css'
 
@@ -22,6 +22,10 @@ class DisplayChallenges extends Component {
 
         this.setState({ activeIndex: newIndex })
     }
+
+    handleDeleteClick = (event, id) => {
+        this.props.deleteChallenge(id)
+    }
     
     render() {
 
@@ -35,6 +39,7 @@ class DisplayChallenges extends Component {
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>
                         <ChallengeCalendar dates={challenge.calendars} />
+                        <Button negative id={challenge.id} onClick={this.handleDeleteClick}>Delete</Button>
                     </Accordion.Content>
                 </React.Fragment>
             )

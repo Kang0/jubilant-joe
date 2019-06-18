@@ -113,3 +113,23 @@ export const buttonClickUpdateChallenge = (id) => {
     }
 }
 
+//Delete user's challenge
+export const deleteChallenge = (id) => {
+    let token = localStorage.getItem("token")
+    return (dispatch, getState) => {
+        fetch('http://localhost:3001/delete_challenge', {
+            method: "DELETE",
+            body: JSON.stringify(id),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(req => req.json())
+        .then(data => {
+            debugger
+        })
+    }
+}
+

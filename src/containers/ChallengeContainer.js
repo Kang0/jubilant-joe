@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 //import challenge components
 import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
-import { getChallenges, buttonClickUpdateChallenge, getUserChallenges} from '../actions/actionChallenge'
+import { getChallenges, buttonClickUpdateChallenge, getUserChallenges, deleteChallenge } from '../actions/actionChallenge'
 import { clickAddTwoCurrency, getLocker } from '../actions/actionLocker'
 //import semantic ui
 import { Grid } from 'semantic-ui-react'
@@ -24,7 +24,8 @@ class ChallengeContainer extends Component {
                         <DisplayChallenges 
                             challenges={this.props.challenges}
                             buttonClick={this.props.buttonClickUpdateChallenge}
-                            clickAddTwoCurrency={this.props.clickAddTwoCurrency} 
+                            clickAddTwoCurrency={this.props.clickAddTwoCurrency}
+                            deleteChallenge={this.props.deleteChallenge}
                         />
                     </Grid.Row>
                 </Grid>
@@ -46,5 +47,6 @@ export default connect(mapStateToProps, {
     buttonClickUpdateChallenge,
     getUserChallenges,
     clickAddTwoCurrency,
-    getLocker
+    getLocker,
+    deleteChallenge
     })(ChallengeContainer)
