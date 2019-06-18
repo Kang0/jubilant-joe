@@ -4,7 +4,7 @@ export default function challengeReducer(state = [], action) {
     switch(action.type) {
 
         //GET after mount all user's challenges
-        case 'FETCH_USER_CHALLENGES':
+        case 'ADD_USER_CHALLENGES':
             console.log("successfully retrieved", action.payload.challenges)
             return action.payload.challenges
 

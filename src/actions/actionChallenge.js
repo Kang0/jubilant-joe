@@ -69,7 +69,7 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
-                dispatch({ type: "FETCH_USER_CHALLENGES", payload: data })
+                dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
             })
             .then(data => dispatch({ type: "UPDATE_DAYS" }))//once the user challenges is received, then we can update the days accordingly
             .catch(error => console.log("Error" + error))
@@ -116,8 +116,9 @@ export const buttonClickUpdateChallenge = (id) => {
 //Delete user's challenge
 export const deleteChallenge = (id) => {
     let token = localStorage.getItem("token")
+    let deleteUrl = `http://localhost:3001/api/v1/challenges/${id}`
     return (dispatch, getState) => {
-        fetch('http://localhost:3001/delete_challenge', {
+        fetch(deleteUrl, {
             method: "DELETE",
             body: JSON.stringify(id),
             headers: {
@@ -127,9 +128,8 @@ export const deleteChallenge = (id) => {
             }
         })
         .then(req => req.json())
-        .then(data => {
-            debugger
-        })
+        .then(data => dispatch({ type: "ADD_USER_CHALLENGES", payload: data }))
+        .catch(error => {console.log(error)})
     }
 }
 
