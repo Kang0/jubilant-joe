@@ -72,6 +72,7 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
+                debugger;
                 dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
                 return data
             })
@@ -134,7 +135,7 @@ export const deleteChallenge = (id) => {
             }
         })
         .then(req => req.json())
-        .then(data => dispatch({ type: "ADD_USER_CHALLENGES", payload: data }))
+        .then(data => dispatch({ type: "ADD_USER_CHALLENGES", payload: data.challenges }))
         .catch(error => {console.log(error)})
     }
 }
