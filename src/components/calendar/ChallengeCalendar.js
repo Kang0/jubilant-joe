@@ -11,7 +11,7 @@ class ChallengeCalendar extends Component {
         let uniqueYears = []
 
         //this.props.dates was undefined when the initial render happened, so had to create an if statement
-        if(this.props.dates != undefined) {
+        if(this.props.dates !== undefined) {
             uniqueMonths = [...new Set(this.props.dates.map(date => date.months + 1))].reverse()
             uniqueYears = [...new Set(this.props.dates.map(date => date.years ))]
         }
@@ -40,21 +40,19 @@ class ChallengeCalendar extends Component {
             let startDate = this.props.dates[0]
             let endDate = this.props.dates[100]
             return (
-                <Grid.Column>
-                    <DisplayCalendar dates={month} startDate={startDate} endDate={endDate} />
+                <Grid.Column key={month[0].format('M')}>
+                    <DisplayCalendar key={month[0].format('M')} dates={month} startDate={startDate} endDate={endDate} />
                 </Grid.Column>
             )
         })
 
         //I want to have each day as a single object that we can do things with
         return (
-            <React.Fragment>
-                <Grid columns={4}>
-                    <Grid.Row>
-                        {renderCalendars}
-                    </Grid.Row>
-                </Grid>
-            </React.Fragment>
+            <Grid columns={4}>
+                <Grid.Row>
+                    {renderCalendars}
+                </Grid.Row>
+            </Grid>
         )
     }
 }

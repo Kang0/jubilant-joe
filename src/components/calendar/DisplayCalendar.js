@@ -8,9 +8,9 @@ const DisplayCalendar = ({ dates, startDate, endDate }) => {
 
     //use moment js to get an array of abb weekday names
     //map over array and set table headers as each day of the week
-    let weekdayShortName = moment.weekdaysShort().map(day => {
+    let weekdayShortName = moment.weekdaysShort().map((day, i) => {
         return (
-            <Table.Cell collapsing>
+            <Table.Cell key={i} collapsing>
                 {day}
             </Table.Cell>
         )
@@ -25,7 +25,7 @@ const DisplayCalendar = ({ dates, startDate, endDate }) => {
     let blanks = []
     for (let i=0; i < firstDay; i++) {
         blanks.push(
-            <Table.Cell collapsing>
+            <Table.Cell collapsing key={i+32}>
                 {""}
             </Table.Cell>
         )
@@ -41,31 +41,31 @@ const DisplayCalendar = ({ dates, startDate, endDate }) => {
         let momentStartDate = moment(startDate)
         let momentEndDate = moment(endDate)
 
-        return (dates.map((date, index) => {
+        return (dates.map((date, i) => {
             let day = moment(date).format("DD")
             let current_day = moment()
             //if the date is the same as the current day, it highlights the cell as blue, if its the start or end date, highlight green
             if(date.isSame(current_day, 'day')){
                 return(
-                    <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)} className="current-day">
+                    <Table.Cell collapsing key={i} month={month} onClick={e => handleOnClick(e, month)} className="current-day">
                         {day}
                     </Table.Cell>
                 )
             } else if(date.isSame(momentStartDate, 'day')) {
                 return(
-                    <Table.Cell collapsing month={month} onClick={e=>handleOnClick(e, month)} className="start-day">
+                    <Table.Cell collapsing key={i} month={month} onClick={e=>handleOnClick(e, month)} className="start-day">
                         {day}
                     </Table.Cell>
                 )
             } else if(date.isSame(momentEndDate, 'day')) {
                 return(
-                    <Table.Cell collapsing month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
+                    <Table.Cell collapsing key={i} month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
                         {day}
                     </Table.Cell>
                 )
             } else {
                 return(
-                    <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)}>
+                    <Table.Cell collapsing key={i} month={month} onClick={e => handleOnClick(e, month)}>
                         {day}
                     </Table.Cell>
                 )
@@ -100,7 +100,7 @@ const DisplayCalendar = ({ dates, startDate, endDate }) => {
 
     //map over rows to be nested in between tablerows (tr)
     let finalCalendar = rows.map((d, i) => {
-        return <Table.Row>{d}</Table.Row>
+        return <Table.Row key={i}>{d}</Table.Row>
     })
     //maybe update tr into semantic table rows
 

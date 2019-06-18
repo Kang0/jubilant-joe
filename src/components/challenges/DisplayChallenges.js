@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
-import { Card, Accordion, Button } from 'semantic-ui-react'
+import { Accordion, Button } from 'semantic-ui-react'
 import ChallengeCalendar from '../calendar/ChallengeCalendar'
 import '../../App.css'
 
@@ -33,23 +33,21 @@ class DisplayChallenges extends Component {
         
         const renderChallenge = this.props.challenges.map(challenge => {
             return(
-                <React.Fragment>
+                <Accordion key={challenge.id} fluid styled>
                     <Accordion.Title active={activeIndex === challenge.id} index={challenge.id} onClick={this.handleCardClick} >
-                        <ChallengeCard challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
+                        <ChallengeCard key={challenge.id} challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>
-                        <ChallengeCalendar dates={challenge.calendars} />
+                        <ChallengeCalendar key={challenge.id} dates={challenge.calendars} />
                         <Button negative id={challenge.id} onClick={this.handleDeleteClick}>Delete</Button>
                     </Accordion.Content>
-                </React.Fragment>
+                </Accordion>
             )
         })
 
         return(
             <div>
-                <Accordion fluid styled>
-                    {renderChallenge}
-                </Accordion>
+                {renderChallenge}
             </div>
         )
     }
