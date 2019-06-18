@@ -48,6 +48,7 @@ const updateDays = data => {
 
             let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
 
+            //if the current time is after the timeToClick attribute, set challenge.clicked to false
             if (moment(canClickButton).isAfter(challenge.timeToClick)) {
                 challenge.clicked = false
             }

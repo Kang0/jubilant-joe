@@ -18,6 +18,7 @@ const Navbar = () => {
             <Menu>
                 <Menu.Item icon="quidditch" />
                 <Menu.Item name='home' as={Link} to='/' />
+                <Menu.Item name="new challenge" as={Link} to="/newchallenge" />
                 <Menu.Item name='user' as={Link} to='/userpage' />
                 <Menu.Item name='about' as={Link} to='/about' />
                 <Menu.Item name='login' as={Link} to='/login' />
