@@ -33,13 +33,13 @@ const updateDays = data => {
 
     return (
         data.map(challenge => {
-            const currentDate = moment(new Date()).format('MM-DD-YYYY')
+            const currentDate = moment(new Date()).format("MM-DD-YYYY")
     
             let dayCreated = moment(challenge.dayCreated).format('MM-DD-YYYY')
-            let lastDay = moment(challenge.lastDay)
+            let lastDay = moment(challenge.lastDay).format("MM-DD-YYYY")
 
-            if (moment(currentDate).isSameOrBefore(lastDay._i)) {
-                let diff = 100 - moment(currentDate).diff(dayCreated, 'days')
+            if (moment(currentDate, "MM-DD-YYYY").isSameOrBefore(lastDay, "MM-DD-YYYY")) {
+                let diff = 100 - moment(currentDate, "MM-DD-YYYY").diff(dayCreated, 'days')
         
                 if (challenge.daysLeft !== diff) {
                     challenge.daysLeft = diff
@@ -49,7 +49,7 @@ const updateDays = data => {
             let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
 
             //if the current time is after the timeToClick attribute, set challenge.clicked to false
-            if (moment(canClickButton).isAfter(challenge.timeToClick)) {
+            if (moment(canClickButton, "MMM D YY, h:mm a").isAfter(challenge.timeToClick, "MMM D YY, h:mm a")) {
                 challenge.clicked = false
             }
 

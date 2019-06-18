@@ -7,9 +7,11 @@ export const postChallenge = formData => {
 
     //creating the 100 days of calendar dates to be created in the server
     let start = moment(formData.dayCreated, "MM-DD-YYYY")
+    debugger;
     let calendar = []
     for (let i=0; i < 101; i++) {
-        let {years, months, date } = start.toObject()
+        //months defined below is current month - 1 due to moment setting jan with 0
+        let { years, months, date } = start.toObject()
         let calendarDate = { years, months, date }
         start = start.add(1, 'd')
         calendar.push(calendarDate)
@@ -87,9 +89,8 @@ export const buttonClickUpdateChallenge = (id) => {
         //grab the current time and set to moment format ("MMM D YY, h:mm a") and add one day to the current time
         const currentTime = moment(new Date()).format("MMM D YY, h:mm a")
         const dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
-        debugger;
 
-        if (moment(currentTime).isAfter(userChallenge.timeToClick)) {
+        if (moment(currentTime, "MMM D YY, h:mm a").isAfter(userChallenge.timeToClick, "MMM D YY, h:mm a")) {
             userChallenge.clicked = true
             userChallenge.timeClicked = currentTime
             userChallenge.timeToClick = dayAfterCurrentTime

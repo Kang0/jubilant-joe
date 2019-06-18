@@ -3,7 +3,7 @@ import moment from 'moment'
 import DisplayCalendar from '../components/calendar/DisplayCalendar'
 import { Grid } from 'semantic-ui-react'
 
-class ChallengeCalendar extends Component {
+class CalendarContainer extends Component {
     render() {
         //unique years due to change of year from oct/nov/dec - jan/feb/march
         //the Set object lets you store unique values of any type
@@ -57,4 +57,4 @@ class ChallengeCalendar extends Component {
     }
 }
 
-export default ChallengeCalendar
+export default CalendarContainer
