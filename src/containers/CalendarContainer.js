@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import DisplayCalendar from '../components/calendar/DisplayCalendar'
 import { Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 class CalendarContainer extends Component {
     render() {
@@ -56,5 +57,11 @@ class CalendarContainer extends Component {
         )
     }
 }
+
+// const mapStateToProps = state => {
+//     return(
+//         calendarDates: state.calenda
+//     )
+// }
 
 export default CalendarContainer

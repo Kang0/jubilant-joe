@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { getCalendar } from './actionCalendar'
 
 //POST new user challenge to the db
 export const postChallenge = formData => {
@@ -74,6 +75,7 @@ export const getUserChallenges = () => {
                 dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
             })
             .then(data => dispatch({ type: "UPDATE_DAYS" }))//once the user challenges is received, then we can update the days accordingly
+            .then(data => {debugger;})
             .catch(error => console.log("Error" + error))
         )
     }
