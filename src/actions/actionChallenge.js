@@ -8,11 +8,11 @@ export const postChallenge = formData => {
 
     //creating the 100 days of calendar dates to be created in the server
     let start = moment(formData.dayCreated, "MM-DD-YYYY")
-    debugger;
     let calendar = []
     for (let i=0; i < 101; i++) {
         //months defined below is current month - 1 due to moment setting jan with 0
         let { years, months, date } = start.toObject()
+        months = months + 1
         let calendarDate = { years, months, date }
         start = start.add(1, 'd')
         calendar.push(calendarDate)
@@ -31,8 +31,8 @@ export const postChallenge = formData => {
                 })
                 .then(resp => resp.json())
                 .then(data => {
-                    dispatch({ type: "POST_CHALLENGE", payload: data.challenge })
-                    dispatch({ type: "UPDATE_LOCKER", payload: data.locker })
+                    dispatch({ type: "POST_CHALLENGE", payload: data })
+                    dispatch({ type: "UPDATE_CALENDAR", payload: data.calendars })
                 })
                 .catch(error => console.log("Error" + error))
     }
@@ -73,9 +73,12 @@ export const getUserChallenges = () => {
             .then(req => req.json())
             .then(data => {
                 dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
+                return data
             })
-            .then(data => dispatch({ type: "UPDATE_DAYS" }))//once the user challenges is received, then we can update the days accordingly
-            .then(data => {debugger;})
+            .then(data => {
+                dispatch({ type: "UPDATE_DAYS" })
+                dispatch({ type: "SET_CALENDAR_STATE", payload: data })
+            })//once the user challenges is received, then we can update the days accordingly
             .catch(error => console.log("Error" + error))
         )
     }

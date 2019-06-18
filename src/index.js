@@ -22,6 +22,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import challengeReducer from './reducers/challengeReducer'
 import userReducer from './reducers/userReducer'
 import lockerReducer from './reducers/lockerReducer'
+import calendarReducer from './reducers/calendarReducer'
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,7 +30,8 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducers = combineReducers({
   challenges: challengeReducer,
   user: userReducer,
-  locker: lockerReducer
+  locker: lockerReducer,
+  calendar: calendarReducer
 })
 
 const store = createStore(
