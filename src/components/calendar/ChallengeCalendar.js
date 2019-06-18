@@ -20,6 +20,7 @@ class ChallengeCalendar extends Component {
         // }
         //create an array populated with every day of each month
         //(4) [Array(30), Array(31), Array(31), Array(30)]
+
         let monthArrays = startOfMonth.map(month => {
             return [...Array(month.daysInMonth())].map((_, i) => {
                 return month.clone().add(i, 'day')
@@ -28,9 +29,11 @@ class ChallengeCalendar extends Component {
 
         //iterate over each month and return each month's calendar object to render
         const renderCalendars = monthArrays.map(month => {
+            let startDate = this.props.dates[0]
+            let endDate = this.props.dates[100]
             return (
                 <Grid.Column>
-                    <DisplayCalendar dates={month} />
+                    <DisplayCalendar dates={month} startDate={startDate} endDate={endDate} />
                 </Grid.Column>
             )
         })

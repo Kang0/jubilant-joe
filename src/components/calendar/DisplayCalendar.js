@@ -4,7 +4,7 @@ import moment from 'moment'
 import { Table } from 'semantic-ui-react'
 
 
-const DisplayCalendar = ({ dates }) => {
+const DisplayCalendar = ({ dates, startDate, endDate }) => {
 
     //use moment js to get an array of abb weekday names
     //map over array and set table headers as each day of the week
@@ -37,25 +37,43 @@ const DisplayCalendar = ({ dates }) => {
     }
 
     //creating array with individual cells <td> with number date
-    let daysInMonth = dates.map((date, index) => {
-        let day = moment(date).format("DD")
-        let current_day = moment()
+    const daysInMonthFunction = (dates, startDate, endDate) => {
+        let momentStartDate = moment(startDate)
+        let momentEndDate = moment(endDate)
 
-        //if the date is the same as the current day, it highlights the cell as blue
-        if (date.isSame(current_day, 'day')){
-            return(
-                <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)} className="current-day">
-                    {day}
-                </Table.Cell>
-            )
-        } else {
-            return(
-                <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)}>
-                    {day}
-                </Table.Cell>
-            )
-        }
-    })
+        return (dates.map((date, index) => {
+            let day = moment(date).format("DD")
+            let current_day = moment()
+            //if the date is the same as the current day, it highlights the cell as blue, if its the start or end date, highlight green
+            if(date.isSame(current_day, 'day')){
+                return(
+                    <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)} className="current-day">
+                        {day}
+                    </Table.Cell>
+                )
+            } else if(date.isSame(momentStartDate, 'day')) {
+                return(
+                    <Table.Cell collapsing month={month} onClick={e=>handleOnClick(e, month)} className="start-day">
+                        {day}
+                    </Table.Cell>
+                )
+            } else if(date.isSame(momentEndDate, 'day')) {
+                return(
+                    <Table.Cell collapsing month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
+                        {day}
+                    </Table.Cell>
+                )
+            } else {
+                return(
+                    <Table.Cell collapsing month={month} onClick={e => handleOnClick(e, month)}>
+                        {day}
+                    </Table.Cell>
+                )
+            }
+        }))
+    }
+
+    let daysInMonth = daysInMonthFunction(dates, startDate, endDate)
 
     //use spread operator to copy over the blanks and days into one array
     let totalSlots = [...blanks, ...daysInMonth]

@@ -1,5 +1,23 @@
 .current-day {
-    background-color: #4285f4;
+    background-color: rgb(15, 132, 228);
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+    color: white;
+}
+
+.start-day {
+    background-color: rgb(46, 128, 25);
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+    color: white;
+}
+
+.end-day {
+    background-color: rgb(46, 128, 25);
     width: 28px;
     height: 28px;
     line-height: 28px;
