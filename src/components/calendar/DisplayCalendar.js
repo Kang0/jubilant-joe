@@ -92,11 +92,12 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
                 } else if(jsonDateToMoment.isSame(momentEndDate, 'day')) {
                     //changes cell to red for end day
                     return(
-                        <Table.Cell collapsing key={i} month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
+                        <Table.Cell collapsing key={i} month={month} onClick={e=>handleOnClick(e, month)} className="end-day">
                             {date}
                         </Table.Cell>
                     )
                 } else {
+                    //returns a white cell, but will do something more with this later
                     return (
                         <Table.Cell collapsing key={i} month={month}>
                             {date}
@@ -105,7 +106,7 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
                 }
             } else {
                 return (
-                    <Table.Cell collapsing key={i} month={month}>
+                    <Table.Cell collapsing key={i} month={month} className="regular-day">
                         {date}
                     </Table.Cell>
                 )
@@ -147,7 +148,7 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
 
     return (
         //<Table collapsing> - only takes up as much space as its rows
-        <Table celled striped collapsing>
+        <Table celled className="calendar" collapsing>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell colSpan='7'>{month}</Table.HeaderCell>

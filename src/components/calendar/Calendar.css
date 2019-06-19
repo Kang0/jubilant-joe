@@ -1,5 +1,17 @@
+/* aligning calendar */
+
+/* coloring cells */
+.regular-day{
+    background-color: grey;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 3%;
+    color: white;
+}
+
 .current-day {
-    background-color: rgb(98, 0, 128);
+    background-color: rgb(113, 88, 224);
     width: 28px;
     height: 28px;
     line-height: 28px;
@@ -17,7 +29,25 @@
 }
 
 .end-day {
-    background-color: rgb(138, 3, 3);
+    background-color: rgb(218, 53, 53);
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+    color: white;
+}
+
+.clicked-day {
+    background-color: rgb(111, 233, 121);
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+    color: white;
+}
+
+.not-clicked-day {
+    background-color: rgb(250, 156, 156);
     width: 28px;
     height: 28px;
     line-height: 28px;

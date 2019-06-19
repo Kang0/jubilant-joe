@@ -91,10 +91,13 @@ export const buttonClickUpdateChallenge = (id) => {
         //grab the current challenge state and filter to get the challenge which was clicked by using id
         let userChallenges = getState().challenges
         let userChallenge = userChallenges.filter(challenge => challenge.id == id)[0]
-        //grab the current time and set to moment format ("MMM D YY, h:mm a") and add one day to the current time
+        //grab the current time and set to moment format ("MMM D YY, h:mm a")
         const currentTime = moment(new Date()).format("MMM D YY, h:mm a")
-        const dayAfterCurrentTime = moment(currentTime).add(1, 'd').format("MMM D YY, h:mm a")
+        //set dayAfter to the start of (12 am) of the next day
+        const dayAfterCurrentTime = moment(currentTime).add(1, 'd').startOf('day').format("MMM D YY, h:mm a")
+        debugger;
 
+        
         if (moment(currentTime, "MMM D YY, h:mm a").isAfter(userChallenge.timeToClick, "MMM D YY, h:mm a")) {
             userChallenge.clicked = true
             userChallenge.timeClicked = currentTime
