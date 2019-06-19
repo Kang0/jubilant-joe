@@ -12,7 +12,7 @@ class DisplayChallenges extends Component {
     handleOnButtonClick = event => {
         this.props.buttonClick(event.target.id)
         //passing in the challenge id as an argument
-        this.props.clickAddTwoCurrency()
+        // this.props.clickAddTwoCurrency()
     }
 
     handleCardClick = (event, titleProps = { index: 0 }) => {
