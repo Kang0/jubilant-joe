@@ -38,7 +38,7 @@ class DisplayChallenges extends Component {
                         <ChallengeCard key={challenge.id} challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>
-                        <CalendarContainer key={challenge.id} id={challenge.id} />
+                        <CalendarContainer key={challenge.id} id={challenge.id} startDate={challenge.dayCreated} endDate={challenge.lastDay} />
                         <Button negative id={challenge.id} onClick={this.handleDeleteClick}>Delete</Button>
                     </Accordion.Content>
                 </Accordion>

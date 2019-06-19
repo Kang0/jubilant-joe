@@ -6,7 +6,7 @@ import { Table } from 'semantic-ui-react'
 
 const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
 
-    //get the number date of cells in the 100 day span
+    //get each cell's number date of their specific month in the 100 day span
     let userDays = calendarObject.map(userdates => userdates.date)
     //create an array of objects that have attributes of years, months, date, and userCell: false, indicating its not part of the 100 day span
     let convertedDates = dates.map(data => {
@@ -25,7 +25,13 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
         }
     }).filter(x => x != null)
     //spread the nonUserCells and the CalendarObjects, which are the days in the span of 100 days
+    
     let combineCalendar = [...nonUserCells, ...calendarObject]
+
+    //didn't know double ternary works ha
+
+    nonUserCells.length < 1 ? console.log("YAYYY") : (nonUserCells[0].date > userDays[userDays.length - 1]) ? combineCalendar = [...calendarObject, ...nonUserCells] : console.log("NAYYY")
+
     //use moment js to get an array of abb weekday names
     //map over array and set table headers as each day of the week
     let weekdayShortName = moment.weekdaysShort().map((day, i) => {
@@ -61,77 +67,51 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
         let momentEndDate = moment(endDate)
 
         return (dates.map((jsonDate, i) => {
-            console.log(jsonDate)
-
-            let day = moment(jsonDate).format("DD")
+            let { date, months, years } = jsonDate
             let current_day = moment()
             
             if(jsonDate.userCell) {
-                let combineJsonDate = `${jsonDate.years}-${jsonDate.months}-${jsonDate.date}`
+                //reformat dates to a date that moment can accurately read
+                let combineJsonDate = `${years}-${months}-${date}`
                 let jsonDateToMoment = moment(combineJsonDate, "YYYY-M-DD")
-
-                if(jsonDateToMoment.isSame(current_day, 'day')){
+                //compare the reformated moment with various factors
+                if(jsonDateToMoment.isSame(current_day, 'day') && jsonDateToMoment.isSame(current_day, 'month')){
+                    //changes cell to yellow if its the current day
                     return(
                         <Table.Cell collapsing key={i} month={month} onClick={e => handleOnClick(e, month)} className="current-day">
-                            {day}
+                            {date}
                         </Table.Cell>
                     )
                 } else if(jsonDateToMoment.isSame(momentStartDate, 'day')) {
+                    //changes cell to green for start day
                     return(
                         <Table.Cell collapsing key={i} month={month} onClick={e=>handleOnClick(e, month)} className="start-day">
-                            {day}
+                            {date}
                         </Table.Cell>
                     )
                 } else if(jsonDateToMoment.isSame(momentEndDate, 'day')) {
+                    //changes cell to red for end day
                     return(
                         <Table.Cell collapsing key={i} month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
-                            {day}
+                            {date}
                         </Table.Cell>
                     )
                 } else {
                     return (
                         <Table.Cell collapsing key={i} month={month}>
-                            {day}
+                            {date}
                         </Table.Cell>
                     )
                 }
-
             } else {
                 return (
                     <Table.Cell collapsing key={i} month={month}>
-                        {day}
+                        {date}
                     </Table.Cell>
                 )
             }
-            // let day = moment(date).format("DD")
-            // let current_day = moment()
-            //if the date is the same as the current day, it highlights the cell as blue, if its the start or end date, highlight green
-            // if(date.isSame(current_day, 'day')){
-            //     return(
-            //         <Table.Cell collapsing key={i} month={month} onClick={e => handleOnClick(e, month)} className="current-day">
-            //             {day}
-            //         </Table.Cell>
-            //     )
-            // } else if(date.isSame(momentStartDate, 'day')) {
-            //     return(
-            //         <Table.Cell collapsing key={i} month={month} onClick={e=>handleOnClick(e, month)} className="start-day">
-            //             {day}
-            //         </Table.Cell>
-            //     )
-            // } else if(date.isSame(momentEndDate, 'day')) {
-            //     return(
-            //         <Table.Cell collapsing key={i} month={month} negative onClick={e=>handleOnClick(e, month)} className="end-day">
-            //             {day}
-            //         </Table.Cell>
-            //     )
-            // } else {
-            //     return(
-            //         <Table.Cell collapsing key={i} month={month} onClick={e => handleOnClick(e, month)}>
-            //             {day}
-            //         </Table.Cell>
-            //     )
-            // }
-        }))
+        })
+        )
     }
 
     let daysInMonth = daysInMonthFunction(combineCalendar, startDate, endDate)
