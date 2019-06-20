@@ -8,6 +8,10 @@ export default function userReducer(state = {
             let { username, email, id } = action.payload
             return { username, email, id }
 
+        case "LOGOUT_USER":
+            debugger;
+            return { username: "", email: "", id: "" }
+
         default:
             return state
     }

@@ -4,15 +4,19 @@ import { connect } from 'react-redux'
 import UserPage from '../components/user/UserPage'
 import UserLocker from '../components/user/UserLocker'
 import { getLocker } from '../actions/actionLocker'
-import { getUser } from '../actions/actionUser'
+import { getUser, logoutUser } from '../actions/actionUser'
 
-import { Container, Grid, Segment } from 'semantic-ui-react'
+import { Container, Button, Icon } from 'semantic-ui-react'
 
 class UserContainer extends Component {
 
     componentDidMount() {
         this.props.getUser()
-        this.props.getLocker()
+        // this.props.getLocker()
+    }
+
+    handleLogOut = () => {
+        this.props.logoutUser()
     }
 
     render() {
@@ -20,6 +24,7 @@ class UserContainer extends Component {
             <Container>
                 <UserLocker locker={ this.props.locker }/>
                 <UserPage user={ this.props.user } />
+                <Button fluid color='red' onClick={this.handleLogOut}><Icon name="sign-out"></Icon>Sign Out</Button>
             </Container>
         )
     }
@@ -32,4 +37,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getLocker, getUser })(UserContainer)
+export default connect(mapStateToProps, { getUser, logoutUser })(UserContainer)

@@ -13,7 +13,7 @@ class ChallengeContainer extends Component {
 
     componentDidMount() {
         this.props.getUserChallenges()
-        this.props.getLocker()
+        // this.props.getLocker()
     }
 
     render () {
@@ -37,8 +37,7 @@ class ChallengeContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        challenges: state.challenges,
-        locker: state.locker
+        challenges: state.challenges
     }
 }
 
@@ -47,6 +46,5 @@ export default connect(mapStateToProps, {
     buttonClickUpdateChallenge,
     getUserChallenges,
     clickAddTwoCurrency,
-    getLocker,
     deleteChallenge
-    })(ChallengeContainer)
+})(ChallengeContainer)

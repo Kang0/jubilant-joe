@@ -106,7 +106,7 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
                 else {
                     //returns a white cell, but will do something more with this later
                     return (
-                        <Table.Cell collapsing warning key={i} month={month}>
+                        <Table.Cell collapsing negative key={i} month={month}>
                             {date}
                         </Table.Cell>
                     )

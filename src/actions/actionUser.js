@@ -1,5 +1,6 @@
 export const loginUser = userInfo => {
     let url = "http://localhost:3001/login"
+    debugger;
 
     return dispatch => {
         return (
@@ -15,8 +16,10 @@ export const loginUser = userInfo => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
+                    debugger;
                     console.log("Sucessfully Logged In")
                     localStorage.setItem("token", data.token)
+                    dispatch({ type: "SET_USER_STATE"} )
                 } else {
                     console.log("The returned data was not correct")
                 }
@@ -38,5 +41,12 @@ export const getUser = () => {
             .then(user => dispatch( { type: 'SET_USER_STATE', payload: user } ))
             .catch(error => error)
         )}
+}
+
+export const logoutUser = () => {
+    return dispatch => {
+        localStorage.clear()
+        return dispatch({ type: "LOGOUT_USER" })
+    }
 }
 
