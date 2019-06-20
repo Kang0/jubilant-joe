@@ -118,10 +118,7 @@ export const buttonClickUpdateChallenge = (id) => {
                     }
                 })
                 .then(req => req.json())
-                .then(data => {
-                    debugger
-                    dispatch({ type: "CLICK_BUTTON", payload: data })
-                })
+                .then(data => dispatch({ type: "CLICK_BUTTON", payload: data }))
                 .catch(error => {console.log(error)})
             )
         }      

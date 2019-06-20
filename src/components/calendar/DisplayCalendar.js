@@ -1,7 +1,7 @@
 import React from 'react';
 import './Calendar.css'
 import moment from 'moment'
-import { Table } from 'semantic-ui-react'
+import { Table, Label } from 'semantic-ui-react'
 
 
 const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
@@ -96,10 +96,17 @@ const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
                             {date}
                         </Table.Cell>
                     )
-                } else {
+                } else if(jsonDate.clicked) {
+                    return(
+                        <Table.Cell collapsing positive key={i} month={month} onClick={e => handleOnClick(e, month)} className="clicked-day">
+                            {date}
+                        </Table.Cell>
+                    )
+                } 
+                else {
                     //returns a white cell, but will do something more with this later
                     return (
-                        <Table.Cell collapsing key={i} month={month}>
+                        <Table.Cell collapsing warning key={i} month={month}>
                             {date}
                         </Table.Cell>
                     )

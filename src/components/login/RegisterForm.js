@@ -71,7 +71,7 @@ class RegisterForm extends Component {
     render() {
         return (
             <Container>
-                <Grid centered columns={2}>
+                <Grid centered padded columns={2}>
                     <Grid.Column>
                         <Header as="h2" textAlign="center">
                             User Registration
@@ -106,9 +106,6 @@ class RegisterForm extends Component {
                                 <Button type="submit">Submit</Button>
                             </Form>
                         </Segment>
-                        <Message>
-                            PLACEHOLDER
-                        </Message>
                     </Grid.Column>
                 </Grid>
             </Container>

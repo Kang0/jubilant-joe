@@ -40,7 +40,7 @@ class LoginForm extends Component {
     render() {
         return(
             <Container>
-                <Grid centered columns={2}>
+                <Grid padded centered columns={2}>
                     <Grid.Column>
                         <Header as="h2" textAlign="center">
                             Login
