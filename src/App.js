@@ -1,14 +1,24 @@
 import React from 'react';
 import './App.css';
+import NavbarContainer from './containers/NavbarContainer'
 
-import ChallengeContainer from './containers/ChallengeContainer'
+//importing redux features
+import { connect } from 'react-redux'
 
 function App() {
   return (
     <div>
-      <ChallengeContainer />
+      <NavbarContainer />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    challenges: state.challenges,
+    calendars: state.calendars,
+    user: state.user
+  }
+}
+
+export default (mapStateToProps)(App)

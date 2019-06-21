@@ -1,22 +1,50 @@
+//user actions that only return dispatch arguments
+const requestLogin = userInfo => {
+    return {
+        type: "LOGIN_REQUEST",
+        isFetching: true,
+        isAuthenticated: false,
+        userInfo
+    }
+}
+
+const receiveLogin = token => {
+    return {
+        type: "LOGIN_SUCCESS",
+        isFetching: false,
+        isAuthenticated: true,
+        token: token
+    }
+}
+
+const loginError = message => {
+    return {
+        type: "LOGIN_FAILURE",
+        isFetching: false,
+        isAuthenticated: false,
+        message
+    }
+}
+
+
+//actions that fetch to the server
 export const loginUser = userInfo => {
     let url = "http://localhost:3001/login"
-    debugger;
 
     return dispatch => {
+        dispatch(requestLogin(userInfo))
+
         return (
             fetch(url, {
                 method: "POST",
                 body: JSON.stringify(userInfo),
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json'
+                    'Content-Type': 'application/json'
                 }
             })
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    debugger;
                     console.log("Sucessfully Logged In")
                     localStorage.setItem("token", data.token)
                     dispatch({ type: "SET_USER_STATE"} )
