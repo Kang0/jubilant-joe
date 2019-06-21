@@ -1,15 +1,19 @@
 export default function userReducer(state = {
     username: '',
     email: '',
-    id: ''
+    id: '',
+    message: ''
 }, action) {
     switch(action.type) {
-        case "SET_USER_STATE":
-            let { username, email, id } = action.payload
-            return { username, email, id }
+        case "LOGIN_SUCCESS":
+            //returns isFetching: false, isAuthenticated: true, userInfo
+            let { username, email } = action.user
+            return { username, email }
+        
+        case "LOGIN_FAILURE":
+            return {...state, message: action.message}
 
         case "LOGOUT_USER":
-            debugger;
             return { username: "", email: "", id: "" }
 
         default:

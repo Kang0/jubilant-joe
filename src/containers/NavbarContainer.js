@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 //import components to be used for Route
 import UserContainer from './UserContainer'

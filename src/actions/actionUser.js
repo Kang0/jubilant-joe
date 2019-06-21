@@ -8,12 +8,12 @@ const requestLogin = userInfo => {
     }
 }
 
-const receiveLogin = token => {
+const receiveLogin = user => {
     return {
         type: "LOGIN_SUCCESS",
         isFetching: false,
         isAuthenticated: true,
-        token: token
+        user
     }
 }
 
@@ -32,6 +32,7 @@ export const loginUser = userInfo => {
     let url = "http://localhost:3001/login"
 
     return dispatch => {
+        //this dispatch sets the state to requesting, notifying the request has been sent
         dispatch(requestLogin(userInfo))
 
         return (
@@ -44,14 +45,15 @@ export const loginUser = userInfo => {
             })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
-                    console.log("Sucessfully Logged In")
+                if(data.status === "success"){
                     localStorage.setItem("token", data.token)
-                    dispatch({ type: "SET_USER_STATE"} )
+                    let {username, email} = data
+                    dispatch(receiveLogin({username, email}))
                 } else {
-                    console.log("The returned data was not correct")
+                    dispatch(loginError(data.errors))
                 }
             })
+            .catch(error => console.log(error))
     )}
 }
 
