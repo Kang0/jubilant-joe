@@ -35,7 +35,7 @@ class LoginForm extends Component {
         }
 
         this.props.loginUser(params)
-        
+
         this.setState({
             username: '',
             password: ''
@@ -72,6 +72,7 @@ class LoginForm extends Component {
                                 <Button type="submit">Submit</Button>
                             </Form>
                         </Segment>
+                        {this.props.message}
                         <Message>
                             Not registered yet? <a href="/registration">Register</a>
                         </Message>

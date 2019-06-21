@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Button,
-    Form,
-    Grid,
-    Header,
-    Message,
-    Segment,
-    Container
+    Button, Form, Grid, Header, Segment, Container
 } from 'semantic-ui-react'
 
 
@@ -35,6 +29,10 @@ class RegisterForm extends Component {
                 password: this.state.password
             }
         }
+
+        this.props.registerUser(params)
+
+        
 
         fetch('http://localhost:3001/registration', {
             method: "POST",

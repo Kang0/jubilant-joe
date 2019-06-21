@@ -65,6 +65,8 @@ export const loginUser = userInfo => {
     )}
 }
 
+//getUser information, but I shouldn't need this since we set the state when the user logins
+//FIX THIS
 export const getUser = () => {
     let token = localStorage.getItem('token')
     return dispatch => {

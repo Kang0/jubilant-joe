@@ -9,12 +9,17 @@ import RegisterForm from '../components/login/RegisterForm'
 import LoginForm from '../components/login/LoginForm'
 import ChallengeForm from '../components/challenges/ChallengeForm'
 
-class NavbarContainer extends Component {
+import { connect } from 'react-redux'
+
+class App extends Component {
     render() {
+        
+        let { isAuthenticated } = this.props.user
+
         return (
             <Router>
                 <div>
-                    <Navbar />
+                    <Navbar isAuthenticated={isAuthenticated} />
                     <Route exact path="/" component={ ChallengeContainer } />
                     <Route exact path="/newchallenge" component={ ChallengeForm } />
                     <Route exact path="/userpage" component={ UserContainer } />
@@ -26,4 +31,10 @@ class NavbarContainer extends Component {
     }
 }
 
-export default NavbarContainer
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(App)
