@@ -35,6 +35,7 @@ class LoginForm extends Component {
         }
 
         this.props.loginUser(params)
+        
         this.setState({
             username: '',
             password: ''

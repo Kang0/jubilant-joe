@@ -47,8 +47,9 @@ export const loginUser = userInfo => {
             .then(data => {
                 if(data.status === "success"){
                     localStorage.setItem("token", data.token)
-                    let {username, email} = data
-                    dispatch(receiveLogin({username, email}))
+                    let {username, email, message} = data
+                    //this dispatch sets the logged in users info
+                    dispatch(receiveLogin({username, email, message}))
                 } else {
                     dispatch(loginError(data.errors))
                 }
