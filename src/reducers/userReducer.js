@@ -1,22 +1,28 @@
 export default function userReducer(state = {
+    isFetching: false,
+    isAuthenticated: localStorage.getItem("token") ? true : false,
     username: '',
     email: '',
     message: ''
 }, action) {
+    //these two states will always be sent from the action 
+    let { isFetching, isAuthenticated } = action
+
     switch(action.type) {
         case "LOGIN_REQUEST":
-            return state
+            return { ...state, isFetching, isAuthenticated }
 
         case "LOGIN_SUCCESS":
             //returns isFetching: false, isAuthenticated: true, userInfo
             let { username, email, message } = action.user
-            return { username, email, message }
+            return { ...state, username, email, message, isFetching, isAuthenticated }
         
         case "LOGIN_FAILURE":
-            return {...state, message: action.message}
+            return { ...state, isAuthenticated, isFetching, message: action.message }
 
         case "LOGOUT_USER":
-            return { username: "", email: "", message: ""}
+            return { ...state, username: "", email: "", message: "", isAuthenticated, isFetching }
+        
 
         default:
             return state

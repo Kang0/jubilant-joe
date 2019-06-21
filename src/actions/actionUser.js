@@ -1,10 +1,9 @@
 //user actions that only return dispatch arguments
-const requestLogin = userInfo => {
+const requestLogin = () => {
     return {
         type: "LOGIN_REQUEST",
         isFetching: true,
         isAuthenticated: false,
-        userInfo
     }
 }
 
@@ -23,6 +22,14 @@ const loginError = message => {
         isFetching: false,
         isAuthenticated: false,
         message
+    }
+}
+
+const logoutUser = () => {
+    return {
+        type: "LOGOUT_USER",
+        isFetching: false,
+        isAuthenticated: false
     }
 }
 
@@ -74,10 +81,10 @@ export const getUser = () => {
         )}
 }
 
-export const logoutUser = () => {
+export const getLogout = () => {
     return dispatch => {
         localStorage.clear()
-        return dispatch({ type: "LOGOUT_USER" })
+        return dispatch(logoutUser())
     }
 }
 
