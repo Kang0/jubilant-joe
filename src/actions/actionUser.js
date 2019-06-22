@@ -35,6 +35,34 @@ const logoutUser = () => {
 
 
 //actions that fetch to the server
+
+export const registerUser = userInfo => {
+
+    return dispatch => {
+        debugger
+        fetch('http://localhost:3001/registration', {
+                method: "POST",
+                body: JSON.stringify(userInfo),
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status) {
+                    console.log(data)
+                    dispatch({ type: "UPDATE_MESSAGE", payload: data.message })
+                } else {
+                    console.log("Unable to create user")
+                    dispatch({ type: "UPDATE_MESSAGE", payload: data.message })
+                }
+            })
+            .catch(error => console.log("There was an error" + error))
+        }
+}
+
 export const loginUser = userInfo => {
     let url = "http://localhost:3001/login"
 

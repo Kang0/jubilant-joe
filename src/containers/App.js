@@ -9,23 +9,25 @@ import RegisterForm from '../components/login/RegisterForm'
 import LoginForm from '../components/login/LoginForm'
 import ChallengeForm from '../components/challenges/ChallengeForm'
 
+//import actions to be passed to components
+import { registerUser } from '../actions/actionUser'
+
 import { connect } from 'react-redux'
 
 class App extends Component {
     render() {
-        
-        let { isAuthenticated } = this.props.user
+
+        let { isAuthenticated, message } = this.props.user
+        let { registerUser } = this.props
 
         return (
             <Router>
-                <div>
-                    <Navbar isAuthenticated={isAuthenticated} />
-                    <Route exact path="/" component={ ChallengeContainer } />
-                    <Route exact path="/newchallenge" component={ ChallengeForm } />
-                    <Route exact path="/userpage" component={ UserContainer } />
-                    <Route exact path='/login' component={ LoginForm } />
-                    <Route exact path="/registration" component={ RegisterForm } />
-                </div>
+                <Navbar isAuthenticated={ isAuthenticated } />
+                <Route exact path="/" component={ ChallengeContainer } />
+                <Route exact path="/newchallenge" component={ ChallengeForm } />
+                <Route exact path="/userpage" component={ UserContainer } />
+                <Route exact path='/login' component={props => <LoginForm { ...props } message={ message }/> } />
+                <Route exact path="/registration" render={props => <RegisterForm { ...props } message={ message } registerUser={ registerUser } />} />
             </Router>
         )
     }
@@ -33,8 +35,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        challenges: state.challenges
     }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { registerUser })(App)

@@ -22,6 +22,9 @@ export default function userReducer(state = {
 
         case "LOGOUT_USER":
             return { ...state, username: "", email: "", message: "", isAuthenticated, isFetching }
+        
+        case "UPDATE_MESSAGE":
+            return { ...state, message: action.payload }
 
         default:
             return state
