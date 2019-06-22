@@ -59,6 +59,7 @@ class LoginForm extends Component {
                                     placeholder="Username"
                                     onChange={event => this.handleOnChange(event)}
                                     name="username"
+                                    value="username"
                                 />
                                 <Form.Input
                                     fluid
@@ -68,11 +69,11 @@ class LoginForm extends Component {
                                     type="password"
                                     onChange={event => this.handleOnChange(event)}
                                     name="password"
+                                    value="password"
                                 />
                                 <Button type="submit">Submit</Button>
                             </Form>
                         </Segment>
-                        {this.props.message}
                         <Message>
                             Not registered yet? <a href="/registration">Register</a>
                         </Message>
