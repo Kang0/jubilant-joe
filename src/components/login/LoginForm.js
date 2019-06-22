@@ -42,21 +42,23 @@ class LoginForm extends Component {
         })
     }
 
-    handleUserFetchStatus = (isAuthenticated, isFetching) => {
+    handleUserFetchStatus = (isAuthenticated, isFetching, message) => {
         if(!isAuthenticated && !isFetching) {
             return(
-                <Button type="submit">Submit</Button>
+                <>
+                    <Button type="submit">Submit</Button>
+                    <p>{ message }</p>
+                </>
             )
         } else if (!isAuthenticated && isFetching) {
             return(
                 <Button loading></Button>
             )
         } else if (isAuthenticated && !isFetching) {
-            debugger;
             return(
                 <>
                     <Button type="submit">Submit</Button>
-                    <Message>Successfully logged in!</Message>
+                    <Message>{ message }</Message>
                 </>
             )
         }
@@ -91,7 +93,7 @@ class LoginForm extends Component {
                                     name="password"
                                     value={this.state.password}
                                 />
-                                {this.handleUserFetchStatus(this.props.isAuthenticated, this.props.isFetching)}
+                                {this.handleUserFetchStatus(this.props.isAuthenticated, this.props.isFetching, this.props.message)}
                             </Form>
                         </Segment>
                         <Message>
