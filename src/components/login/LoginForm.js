@@ -42,6 +42,26 @@ class LoginForm extends Component {
         })
     }
 
+    handleUserFetchStatus = (isAuthenticated, isFetching) => {
+        if(!isAuthenticated && !isFetching) {
+            return(
+                <Button type="submit">Submit</Button>
+            )
+        } else if (!isAuthenticated && isFetching) {
+            return(
+                <Button loading></Button>
+            )
+        } else if (isAuthenticated && !isFetching) {
+            debugger;
+            return(
+                <>
+                    <Button type="submit">Submit</Button>
+                    <Message>Successfully logged in!</Message>
+                </>
+            )
+        }
+    }
+
     render() {
         return(
             <Container>
@@ -59,7 +79,7 @@ class LoginForm extends Component {
                                     placeholder="Username"
                                     onChange={event => this.handleOnChange(event)}
                                     name="username"
-                                    value="username"
+                                    value={this.state.username}
                                 />
                                 <Form.Input
                                     fluid
@@ -69,9 +89,9 @@ class LoginForm extends Component {
                                     type="password"
                                     onChange={event => this.handleOnChange(event)}
                                     name="password"
-                                    value="password"
+                                    value={this.state.password}
                                 />
-                                <Button type="submit">Submit</Button>
+                                {this.handleUserFetchStatus(this.props.isAuthenticated, this.props.isFetching)}
                             </Form>
                         </Segment>
                         <Message>

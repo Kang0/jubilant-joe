@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 class App extends Component {
     render() {
 
-        let { isAuthenticated, message } = this.props.user
+        let { isFetching, isAuthenticated, message } = this.props.user
         let { registerUser } = this.props
 
         return (
@@ -26,7 +26,7 @@ class App extends Component {
                 <Route exact path="/" component={ ChallengeContainer } />
                 <Route exact path="/newchallenge" component={ ChallengeForm } />
                 <Route exact path="/userpage" component={ UserContainer } />
-                <Route exact path='/login' component={props => <LoginForm { ...props } message={ message }/> } />
+                <Route exact path='/login' component={props => <LoginForm { ...props } message={ message } isFetching={isFetching} isAuthenticated={isAuthenticated} /> } />
                 <Route exact path="/registration" render={props => <RegisterForm { ...props } message={ message } registerUser={ registerUser } />} />
             </Router>
         )
