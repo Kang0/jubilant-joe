@@ -14,7 +14,7 @@ export default function userReducer(state = {
 
         case "LOGIN_SUCCESS":
             //returns isFetching: false, isAuthenticated: true, userInfo
-            let { username, email, message } = action.user
+            let { username, email, message } = action.payload
             return { ...state, username, email, message, isFetching, isAuthenticated }
         
         case "LOGIN_FAILURE":
@@ -25,6 +25,9 @@ export default function userReducer(state = {
         
         case "UPDATE_MESSAGE":
             return { ...state, message: action.payload }
+        
+        case "SET_USER_STATE":
+            return { ...state, username: action.payload.username, email: action.payload.email }
 
         default:
             return state

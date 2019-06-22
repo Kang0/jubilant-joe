@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
-import { Accordion, Button } from 'semantic-ui-react'
+import { Accordion, Button, Grid } from 'semantic-ui-react'
 import CalendarContainer from '../../containers/CalendarContainer'
 import '../../App.css'
 
@@ -39,6 +39,7 @@ class DisplayChallenges extends Component {
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === challenge.id}>
                         <CalendarContainer key={challenge.id} id={challenge.id} startDate={challenge.dayCreated} endDate={challenge.lastDay} />
+                        <br />
                         <Button negative id={challenge.id} onClick={this.handleDeleteClick}>Delete</Button>
                     </Accordion.Content>
                 </Accordion>

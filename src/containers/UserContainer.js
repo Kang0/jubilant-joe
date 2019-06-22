@@ -3,16 +3,14 @@ import { connect } from 'react-redux'
 
 import UserPage from '../components/user/UserPage'
 import UserLocker from '../components/user/UserLocker'
-import { getLocker } from '../actions/actionLocker'
 import { getUser, getLogout } from '../actions/actionUser'
 
-import { Container, Button, Icon } from 'semantic-ui-react'
+import { Segment, Button, Icon, Grid } from 'semantic-ui-react'
 
 class UserContainer extends Component {
 
     componentDidMount() {
         this.props.getUser()
-        // this.props.getLocker()
     }
 
     handleLogOut = () => {
@@ -21,11 +19,17 @@ class UserContainer extends Component {
 
     render() {
         return (
-            <Container>
-                <UserLocker locker={ this.props.locker }/>
-                <UserPage user={ this.props.user } />
-                <Button fluid color='red' onClick={this.handleLogOut}><Icon name="sign-out"></Icon>Sign Out</Button>
-            </Container>
+            <>
+                <Segment compact>
+                    <Grid padded>
+                        <UserPage user={ this.props.user } />
+                        <Grid.Row>
+                            <UserLocker locker={ this.props.locker }/>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+                <Button color='red' onClick={this.handleLogOut}><Icon name="sign-out"></Icon>Sign Out</Button>
+            </>
         )
     }
 }

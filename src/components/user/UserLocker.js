@@ -4,8 +4,7 @@ const UserLocker = props => {
     let { currency } = props.locker
     return (
         <div>
-            <h4>Welcome to your locker!</h4>
-            <p>Currency: { currency }</p>
+            <h4>Currency: { currency }</h4>
         </div>
     )
 }

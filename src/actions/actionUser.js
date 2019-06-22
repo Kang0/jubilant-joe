@@ -7,12 +7,12 @@ const requestLogin = () => {
     }
 }
 
-const receiveLogin = user => {
+const receiveLogin = payload => {
     return {
         type: "LOGIN_SUCCESS",
         isFetching: false,
         isAuthenticated: true,
-        user
+        payload
     }
 }
 

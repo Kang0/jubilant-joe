@@ -12,7 +12,7 @@ const loggedIn = () => {
     return (
         <>
             <Menu>
-                <Menu.Item icon="quidditch" />
+                <Menu.Item icon="meh outline" />
                 <Menu.Item name='home' as={Link} to='/' />
                 <Menu.Item name="new challenge" as={Link} to="/newchallenge" />
                 <Menu.Item name='user' as={Link} to='/userpage' />
@@ -26,7 +26,7 @@ const loggedOut = () => {
     return (
         <>
             <Menu>
-                <Menu.Item icon="quidditch" />
+                <Menu.Item icon="meh outline" />
                 <Menu.Item name='login' as={Link} to='/login' />
                 <Menu.Item name='registration' as={Link} to='/registration' />
             </Menu>
