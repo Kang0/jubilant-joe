@@ -21,7 +21,7 @@ export default function userReducer(state = {
             return { ...state, isAuthenticated, isFetching, message: action.message }
 
         case "LOGOUT_USER":
-            return { ...state, username: "", email: "", message: "", isAuthenticated, isFetching }
+            return { ...state, username: "", email: "", message: "Logged Out Successfully", isAuthenticated, isFetching }
         
         case "UPDATE_MESSAGE":
             return { ...state, message: action.payload }

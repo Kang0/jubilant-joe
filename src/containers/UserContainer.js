@@ -15,6 +15,7 @@ class UserContainer extends Component {
 
     handleLogOut = () => {
         this.props.getLogout()
+        this.props.history.push("/login")
     }
 
     render() {

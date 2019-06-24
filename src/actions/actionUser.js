@@ -114,6 +114,7 @@ export const getUser = () => {
 export const getLogout = () => {
     return dispatch => {
         localStorage.clear()
+        
         return dispatch(logoutUser())
     }
 }
