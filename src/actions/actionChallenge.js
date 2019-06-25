@@ -103,7 +103,6 @@ export const buttonClickUpdateChallenge = (id) => {
             userChallenge.timeClicked = currentTime
             userChallenge.timeToClick = dayAfterCurrentTime
             let currentTimeServer = currentTimeMoment.format("M DD YYYY")
-            debugger;
             
             const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
             
