@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { postChallenge } from '../../actions/actionChallenge'
 import { Grid, Button, Form, Message, Segment } from 'semantic-ui-react'
 
+import TipColumn from './TipColumn'
+
 class ChallengeForm extends Component {
 
     state = {
@@ -49,20 +51,26 @@ class ChallengeForm extends Component {
 
     render () {
         return (
-            <Grid fluid padded>
-                <Grid.Row centered>
-                    <Segment>
-                        
-                    </Segment>
-                </Grid.Row>
+            <Grid padded divided="vertically">
                 <Grid.Row centered>
                     <React.Fragment>
-                        <Form fluid onSubmit={event=>this.handleOnSubmit(event)}>
+                        <Form onSubmit={event=>this.handleOnSubmit(event)}>
                             <Form.Input label="100 Day Challenge" value={this.state.name} onChange={event=>this.handleOnChange(event)} />
                             <Message success header="Challenge Successfully created" content="You're new challenge has started. Good Luck!" />
                             <Button>Create</Button>
                         </Form>
                     </React.Fragment>
+                </Grid.Row>
+                <Grid.Row centered columns={3}>
+                    <Grid.Column>
+                        <h4>Please write a new habit you wish to create. </h4>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <TipColumn />
+                    </Grid.Column>
+                    <Grid.Column>
+                        <h4>Examples of what other people are doing for habits for inspiration</h4>
+                    </Grid.Column>
                 </Grid.Row>
             </Grid>
         )

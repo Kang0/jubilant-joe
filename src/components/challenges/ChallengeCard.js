@@ -5,10 +5,9 @@ import '../../index.css'
 const ChallengeCard = ({ handleCardClick, challenge, handleOnButtonClick }) => {
 
     return(
-        <Card fluid color={challenge.clicked ? "red" : "green"} className="image-test" onClick={event => handleCardClick(event)}>
+        <Card fluid color={challenge.clicked ? "red" : "green"} onClick={event => handleCardClick(event)}>
             <Card.Content>
                 <Card.Header>{challenge.name}</Card.Header>
-                <Card.Meta>You have</Card.Meta>
                 <Card.Description className="days-left">
                     {challenge.daysLeft}<br /><br />
                     <div class="card-text">

@@ -5,7 +5,7 @@ import UserPage from '../components/user/UserPage'
 import UserLocker from '../components/user/UserLocker'
 import { getUser, getLogout } from '../actions/actionUser'
 
-import { Segment, Button, Icon, Grid } from 'semantic-ui-react'
+import { Button, Icon, Grid } from 'semantic-ui-react'
 
 class UserContainer extends Component {
 
@@ -21,14 +21,16 @@ class UserContainer extends Component {
     render() {
         return (
             <>
-                <Segment compact>
-                    <Grid padded>
-                        <UserPage user={ this.props.user } />
-                        <Grid.Row>
-                            <UserLocker locker={ this.props.locker }/>
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
+                <Grid padded divided>
+                    <Grid.Row columns={2}>
+                        <Grid.Column>
+                            <UserPage user={ this.props.user } />
+                        </Grid.Column>
+                        <Grid.Column>
+                            <UserLocker locker={ this.props.locker } />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
                 <Button color='red' onClick={this.handleLogOut}><Icon name="sign-out"></Icon>Sign Out</Button>
             </>
         )
