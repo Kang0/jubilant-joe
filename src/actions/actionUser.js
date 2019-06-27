@@ -114,7 +114,10 @@ export const getLogout = () => {
     return dispatch => {
         localStorage.clear()
         
-        return dispatch(logoutUser())
+        dispatch(logoutUser())
+        dispatch({type: "LOGOUT_CHALLENGES"})
+        dispatch({type: "LOGOUT_LOCKER"})
+        dispatch({type: "LOGOUT_CALENDAR"})
     }
 }
 

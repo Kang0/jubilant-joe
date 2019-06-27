@@ -55,12 +55,7 @@ class LoginForm extends Component {
                 <Button loading></Button>
             )
         } else if (isAuthenticated && !isFetching) {
-            return(
-                <>
-                    <Button type="submit">Submit</Button>
-                    <Message>{ message }</Message>
-                </>
-            )
+            this.props.history.push('/')
         }
     }
 

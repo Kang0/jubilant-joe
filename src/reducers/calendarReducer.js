@@ -12,6 +12,9 @@ export default function calendarReducer(state = [], action) {
             let challengeCalendar = {}
             challengeCalendar[action.payload[0].challenge_id] = action.payload
             return [...state, challengeCalendar]
+        
+        case "LOGOUT_CALENDAR":
+            return []
 
         default:
             return state
