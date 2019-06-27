@@ -8,6 +8,7 @@ import Navbar from '../components/navbar/Navbar'
 import RegisterForm from '../components/login/RegisterForm'
 import LoginForm from '../components/login/LoginForm'
 import ChallengeForm from '../components/challenges/ChallengeForm'
+import About from '../components/about'
 
 //import actions to be passed to components
 import { registerUser } from '../actions/actionUser'
@@ -28,6 +29,7 @@ class App extends Component {
                 <Route exact path="/userpage" component={ UserContainer } />
                 <Route exact path='/login' component={props => <LoginForm { ...props } message={ message } isFetching={isFetching} isAuthenticated={isAuthenticated} /> } />
                 <Route exact path="/registration" render={props => <RegisterForm { ...props } message={ message } registerUser={ registerUser } />} />
+                <Route exact path="/about" component={ About } />
             </Router>
         )
     }
