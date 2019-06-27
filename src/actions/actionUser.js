@@ -39,7 +39,6 @@ const logoutUser = () => {
 export const registerUser = userInfo => {
 
     return dispatch => {
-        debugger
         fetch('http://localhost:3001/registration', {
                 method: "POST",
                 body: JSON.stringify(userInfo),

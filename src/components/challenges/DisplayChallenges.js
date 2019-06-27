@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
-import { Accordion, Button, Grid } from 'semantic-ui-react'
+import { Accordion, Button } from 'semantic-ui-react'
 import CalendarContainer from '../../containers/CalendarContainer'
 import '../../App.css'
 

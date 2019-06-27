@@ -76,12 +76,42 @@ export const getUserChallenges = () => {
                 return data
             })
             .then(data => {
-                dispatch({ type: "UPDATE_DAYS" })
+                const updatedDays = updateDays(data)
+                dispatch({ type: "UPDATE_DAYS", payload: updatedDays })
                 dispatch({ type: "SET_CALENDAR_STATE", payload: data })
             })//once the user challenges is received, then we can update the days accordingly
             .catch(error => console.log("Error" + error))
         )
     }
+}
+
+const updateDays = data => {
+
+    return (
+        data.map(challenge => {
+            const currentDate = moment(new Date()).format("MM-DD-YYYY")
+    
+            let dayCreated = moment(challenge.dayCreated).format('MM-DD-YYYY')
+            let lastDay = moment(challenge.lastDay).format("MM-DD-YYYY")
+
+            if (moment(currentDate, "MM-DD-YYYY").isSameOrBefore(lastDay, "MM-DD-YYYY")) {
+                let diff = 100 - moment(currentDate, "MM-DD-YYYY").diff(dayCreated, 'days')
+        
+                if (challenge.daysLeft !== diff) {
+                    challenge.daysLeft = diff
+                } 
+            } //else statement once the date is after the last day of the challenge
+
+            let canClickButton = moment(new Date()).format("MMM D YY, h:mm a")
+
+            //if the current time is after the timeToClick attribute, set challenge.clicked to false
+            if (moment(canClickButton, "MMM D YY, h:mm a").isAfter(challenge.timeToClick, "MMM D YY, h:mm a")) {
+                challenge.clicked = false
+            }
+
+            return challenge
+        })
+    )
 }
 
 //Update the challenge's info stating the button was clicked once today. 

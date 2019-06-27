@@ -17,7 +17,7 @@ class CalendarContainer extends Component {
         let uniqueYears = []
         let calendarObject = {}
 
-        if(this.props.calendar.length > 0) {
+        if(this.props.calendar.length > 0 && calendarDates != undefined) {
             //set the variables once this.props.calendar is set in state
             uniqueMonths = [...new Set(calendarDates[id].map(date => date.months))]
             uniqueYears = [...new Set(calendarDates[id].map(date => date.years ))]
