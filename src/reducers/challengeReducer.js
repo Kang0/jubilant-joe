@@ -9,7 +9,7 @@ export default function challengeReducer(state = [], action) {
             return action.payload
 
         case 'LOADING_CHALLENGE':
-            return [...state]
+            return state
 
         case 'UPDATE_DAYS':
             return action.payload
@@ -20,6 +20,9 @@ export default function challengeReducer(state = [], action) {
         
         case 'CLICK_BUTTON':
             return state.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
+
+        case 'LOGOUT_CHALLENGES':
+            return []
 
         default:
             return state

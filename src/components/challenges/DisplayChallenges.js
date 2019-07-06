@@ -7,7 +7,9 @@ import '../../App.css'
 
 class DisplayChallenges extends Component {
 
-    state = { activeIndex: 0 } //keeping track of which accordion is open
+    state = { 
+        activeIndex: 0
+    } //keeping track of which accordion is open
 
     handleOnButtonClick = event => {
         this.props.buttonClick(event.target.id)

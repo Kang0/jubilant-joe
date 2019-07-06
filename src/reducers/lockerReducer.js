@@ -11,6 +11,9 @@ export default function lockerReducer(state = {
                 currency: action.payload
             }
 
+        case "LOGOUT_LOCKER":
+            return { currency: 0 }
+
         default:
             return state
     }
