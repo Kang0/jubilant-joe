@@ -32,6 +32,7 @@ class CalendarContainer extends Component {
 
         //create moments of start of each month
         const startOfMonth = uniqueMonths.map(month => moment(month, "M").startOf())
+        debugger
 
         //if there are two unique years, we have to ensure the years are correct for the months in the next year when we created the moments above
         // if (uniqueYears.length > 1) {

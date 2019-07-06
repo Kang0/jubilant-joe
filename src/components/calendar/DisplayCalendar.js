@@ -1,7 +1,7 @@
 import React from 'react';
 import './Calendar.css'
 import moment from 'moment'
-import { Table, Label } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 
 const DisplayCalendar = ({ dates, startDate, endDate, calendarObject }) => {
