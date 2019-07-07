@@ -7,13 +7,18 @@ import { connect } from 'react-redux'
 class CalendarContainer extends Component {
 
     state = {
-        activeCalendar: 0
+        activeCalendar: 0,
+        maxIndex: 0
+    }
+
+    componentDidMount() {
+        this.setState({
+            maxIndex: moment(this.props.endDate, "MM-DD-YYYY").format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M")
+        })
     }
 
     onCalendarNext = () => {
-        this.setState({
-            activeCalendar: this.state.activeCalendar + 1
-        })
+        this.state.activeCalendar === this.state.maxIndex ? this.setState({ activeCalendar: this.state.maxIndex }) : this.setState( { activeCalendar: this.state.activeCalendar + 1})
     }
 
     onCalendarPrev = () => {
