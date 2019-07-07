@@ -10,6 +10,16 @@ class CalendarContainer extends Component {
         activeCalendar: 0
     }
 
+    onCalendarNext = () => {
+        this.setState({
+            activeCalendar: this.state.activeCalendar + 1
+        })
+    }
+
+    onCalendarPrev = () => {
+        this.state.activeCalendar === 0 ? this.setState({ activeCalendar: 0 }) : this.setState({ activeCalendar: this.state.activeCalendar - 1 })
+    }
+
     render() {
         //setting the challenge id 
         let { id, startDate, endDate } = this.props
@@ -29,8 +39,7 @@ class CalendarContainer extends Component {
 
             //create new Object that has keys for each month and the values are the challenge days in that specific month
             uniqueMonths.forEach(month => calendarObject[month] = [])
-
-            calendarDates[id].forEach(date => {
+            calendarDates[id].forEach((date, index) => {
                 calendarObject[date.months].push(date)
             })
         }
@@ -53,42 +62,40 @@ class CalendarContainer extends Component {
             })
         })
 
-        let currentDay = moment()
-
-        let currentMonth = monthArrays.findIndex((month, index) => {
-            let firstElementMonth = month[0]
-            if (moment(currentDay).isSame(firstElementMonth, "month")) {
-                return index
-            }
-        })
-
         //iterate over each month and return each month's calendar object to render
-        const renderCalendars = (monthArrays, startDate, endDate, calendarObject) => {
-            debugger
-            let numberMonth = monthArrays[currentMonth][0].format('M') || []
-            let userCalendarCells = calendarObject[numberMonth]
-            return (
-                <DisplayCalendar calendarObject={userCalendarCells} dates={monthArrays[currentMonth]} startDate={startDate} endDate={endDate} />
+        // const renderCalendars = (monthArrays, startDate, endDate, calendarObject) => {
+        //     debugger
+        //     numberMonth = monthArrays[currentMonth][0].format('M') || []
+        //     let userCalendarCells = calendarObject[numberMonth]
+        //     return (
+        //         <DisplayCalendar calendarObject={userCalendarCells} dates={monthArrays[currentMonth]} startDate={startDate} endDate={endDate} />
             
 
-            // return (monthArrays.map(month => {
+        //     return (monthArrays.map(month => {
                 
-            //     let numberMonth = month[0].format('M')
-            //     let userCalendarCells = calendarObject[numberMonth]
+        //         let numberMonth = month[0].format('M')
+        //         let userCalendarCells = calendarObject[numberMonth]
 
-            //     return (
-            //         <Grid.Column key={numberMonth} >
-            //             <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
-            //         </Grid.Column>
-            //     )
-            // })
-        )} 
+        //         return (
+        //             <Grid.Column key={numberMonth} >
+        //                 <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
+        //             </Grid.Column>
+        //         )
+        //     })
+        // )} 
 
         //I want to have each day as a single object that we can do things with
         return (
-            <Grid columns={4}>
+            <Grid fluid>
                 <Grid.Row>
-                    {renderCalendars(monthArrays, startDate, endDate, calendarObject)}
+                    <DisplayCalendar 
+                        calendarObject={calendarObject}
+                        dates={monthArrays}
+                        startDate={startDate}
+                        endDate={endDate}
+                        onCalendarNext={this.onCalendarNext}
+                        onCalendarPrev={this.onCalendarPrev}
+                        activeCalendar={this.state.activeCalendar} />
                 </Grid.Row>
             </Grid>
         )
