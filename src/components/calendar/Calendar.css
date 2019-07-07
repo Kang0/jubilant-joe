@@ -54,3 +54,16 @@
     border-radius: 2%;
     color: white;
 }
+
+.week-day {
+    width: 1em;
+    height: 2em;
+    text-align: center;
+    border-radius: 2%;
+    color: white;
+    background-color: rgb(2, 0, 148);
+}
+
+.calendar-month {
+    text-align: center;
+}

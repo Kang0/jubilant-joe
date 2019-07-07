@@ -5,6 +5,11 @@ import { Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class CalendarContainer extends Component {
+
+    state = {
+        activeCalendar: 0
+    }
+
     render() {
         //setting the challenge id 
         let { id, startDate, endDate } = this.props
@@ -17,7 +22,7 @@ class CalendarContainer extends Component {
         let uniqueYears = []
         let calendarObject = {}
 
-        if(this.props.calendar.length > 0 && calendarDates != undefined) {
+        if(this.props.calendar.length > 0 && calendarDates !== undefined) {
             //set the variables once this.props.calendar is set in state
             uniqueMonths = [...new Set(calendarDates[id].map(date => date.months))]
             uniqueYears = [...new Set(calendarDates[id].map(date => date.years ))]
@@ -32,7 +37,6 @@ class CalendarContainer extends Component {
 
         //create moments of start of each month
         const startOfMonth = uniqueMonths.map(month => moment(month, "M").startOf())
-        debugger
 
         //if there are two unique years, we have to ensure the years are correct for the months in the next year when we created the moments above
         // if (uniqueYears.length > 1) {
@@ -49,20 +53,35 @@ class CalendarContainer extends Component {
             })
         })
 
+        let currentDay = moment()
+
+        let currentMonth = monthArrays.findIndex((month, index) => {
+            let firstElementMonth = month[0]
+            if (moment(currentDay).isSame(firstElementMonth, "month")) {
+                return index
+            }
+        })
+
         //iterate over each month and return each month's calendar object to render
         const renderCalendars = (monthArrays, startDate, endDate, calendarObject) => {
+            debugger
+            let numberMonth = monthArrays[currentMonth][0].format('M') || []
+            let userCalendarCells = calendarObject[numberMonth]
+            return (
+                <DisplayCalendar calendarObject={userCalendarCells} dates={monthArrays[currentMonth]} startDate={startDate} endDate={endDate} />
+            
 
-            return (monthArrays.map(month => {
+            // return (monthArrays.map(month => {
                 
-                let numberMonth = month[0].format('M')
-                let userCalendarCells = calendarObject[numberMonth]
+            //     let numberMonth = month[0].format('M')
+            //     let userCalendarCells = calendarObject[numberMonth]
 
-                return (
-                    <Grid.Column key={numberMonth}>
-                        <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
-                    </Grid.Column>
-                )
-            })
+            //     return (
+            //         <Grid.Column key={numberMonth} >
+            //             <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
+            //         </Grid.Column>
+            //     )
+            // })
         )} 
 
         //I want to have each day as a single object that we can do things with
