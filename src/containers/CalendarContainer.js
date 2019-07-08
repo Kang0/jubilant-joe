@@ -13,6 +13,7 @@ class CalendarContainer extends Component {
 
     componentDidMount() {
         this.setState({
+            activeCalendar: moment().format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M"),
             maxIndex: moment(this.props.endDate, "MM-DD-YYYY").format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M")
         })
     }
