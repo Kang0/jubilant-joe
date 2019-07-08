@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export default function challengeReducer(state = [], action) {
     switch(action.type) {
 
@@ -20,6 +18,9 @@ export default function challengeReducer(state = [], action) {
         
         case 'CLICK_BUTTON':
             return state.map(challenge => challenge.id === action.payload.id ? action.payload : challenge)
+        
+        case 'DELETE_CHALLENGE':
+            return [...state.filter(challenge => challenge.id !== action.id.id)]
 
         case 'LOGOUT_CHALLENGES':
             return []

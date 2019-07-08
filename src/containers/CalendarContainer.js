@@ -67,31 +67,9 @@ class CalendarContainer extends Component {
             })
         })
 
-        //iterate over each month and return each month's calendar object to render
-        // const renderCalendars = (monthArrays, startDate, endDate, calendarObject) => {
-        //     debugger
-        //     numberMonth = monthArrays[currentMonth][0].format('M') || []
-        //     let userCalendarCells = calendarObject[numberMonth]
-        //     return (
-        //         <DisplayCalendar calendarObject={userCalendarCells} dates={monthArrays[currentMonth]} startDate={startDate} endDate={endDate} />
-            
-
-        //     return (monthArrays.map(month => {
-                
-        //         let numberMonth = month[0].format('M')
-        //         let userCalendarCells = calendarObject[numberMonth]
-
-        //         return (
-        //             <Grid.Column key={numberMonth} >
-        //                 <DisplayCalendar key={numberMonth} calendarObject={userCalendarCells} dates={month} startDate={startDate} endDate={endDate} />
-        //             </Grid.Column>
-        //         )
-        //     })
-        // )} 
-
         //I want to have each day as a single object that we can do things with
         return (
-            <Grid fluid>
+            <Grid>
                 <Grid.Row>
                     <DisplayCalendar 
                         calendarObject={calendarObject}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux'
 import { postChallenge } from '../../actions/actionChallenge'
-import { Grid, Button, Form, Message, Segment } from 'semantic-ui-react'
+import { Grid, Button, Form, Message } from 'semantic-ui-react'
 
 import TipColumn from './TipColumn'
 

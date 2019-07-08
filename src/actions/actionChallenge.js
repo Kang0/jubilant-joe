@@ -169,7 +169,7 @@ export const deleteChallenge = (id) => {
             }
         })
         .then(req => req.json())
-        .then(data => dispatch({ type: "ADD_USER_CHALLENGES", payload: data.challenges }))
+        .then(data => dispatch({ type: "DELETE_CHALLENGE", id }))
         .catch(error => {console.log(error)})
     }
 }
