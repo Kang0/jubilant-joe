@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DisplayCalendar from '../components/calendar/DisplayCalendar'
-import { Grid } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class CalendarContainer extends Component {
@@ -70,18 +70,14 @@ class CalendarContainer extends Component {
 
         //I want to have each day as a single object that we can do things with
         return (
-            <Grid>
-                <Grid.Row>
-                    <DisplayCalendar 
-                        calendarObject={calendarObject}
-                        dates={monthArrays}
-                        startDate={startDate}
-                        endDate={endDate}
-                        onCalendarNext={this.onCalendarNext}
-                        onCalendarPrev={this.onCalendarPrev}
-                        activeCalendar={this.state.activeCalendar} />
-                </Grid.Row>
-            </Grid>
+                <DisplayCalendar 
+                    calendarObject={calendarObject}
+                    dates={monthArrays}
+                    startDate={startDate}
+                    endDate={endDate}
+                    onCalendarNext={this.onCalendarNext}
+                    onCalendarPrev={this.onCalendarPrev}
+                    activeCalendar={this.state.activeCalendar} />
         )
     }
 }

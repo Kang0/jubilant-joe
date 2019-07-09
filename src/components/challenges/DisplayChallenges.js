@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ChallengeCard from './ChallengeCard'
-import { Accordion, Button } from 'semantic-ui-react'
+import { Accordion, Button, Grid, Segment } from 'semantic-ui-react'
 import CalendarContainer from '../../containers/CalendarContainer'
+import ChallengeInformation from './ChallengeInformation'
 import '../../App.css'
 
 
@@ -30,19 +31,31 @@ class DisplayChallenges extends Component {
     }
     
     render() {
-
         const { activeIndex } = this.state
         
         const renderChallenge = this.props.challenges.map(challenge => {
+            let { id, dayCreated, lastDay, daysLeft, clicked } = challenge
             return(
-                <Accordion key={challenge.id} fluid styled>
-                    <Accordion.Title active={activeIndex === challenge.id} index={challenge.id} onClick={this.handleCardClick} >
-                        <ChallengeCard key={challenge.id} challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
+                <Accordion key={id} fluid styled>
+                    <Accordion.Title active={activeIndex === id} index={id} onClick={this.handleCardClick} >
+                        <ChallengeCard key={id} challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
                     </Accordion.Title>
-                    <Accordion.Content active={activeIndex === challenge.id}>
-                        <CalendarContainer key={challenge.id} id={challenge.id} startDate={challenge.dayCreated} endDate={challenge.lastDay} />
-                        <br />
-                        <Button negative id={challenge.id} onClick={this.handleDeleteClick}>Delete</Button>
+                    <Accordion.Content active={activeIndex === id}>
+                        <Grid columns={3} divided container>
+                            <Grid.Row>
+                                <Grid.Column width={5}>
+                                    <CalendarContainer key={id} id={id} startDate={dayCreated} endDate={lastDay} />
+                                    <br />
+                                    <Button negative id={id} onClick={this.handleDeleteClick}>Delete</Button>
+                                </Grid.Column>
+                                <Grid.Column width={5}>
+                                    <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated}/>
+                                </Grid.Column>
+                                <Grid.Column width={6}>
+
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
                     </Accordion.Content>
                 </Accordion>
             )
