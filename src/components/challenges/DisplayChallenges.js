@@ -52,7 +52,7 @@ class DisplayChallenges extends Component {
                                     <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated} lastDay={lastDay} />
                                 </Grid.Column>
                                 <Grid.Column width={6}>
-                            
+
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>

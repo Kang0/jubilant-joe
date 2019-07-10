@@ -24,3 +24,20 @@ code {
 .card-header {
   font-size: 10%;
 }
+
+.information {
+  font-family: 'Raleway', sans-serif;
+}
+
+.number {
+  text-align: left;
+  font-size: 4em;
+}
+
+.number-text {
+  font-size: .4em;
+}
+
+.dates {
+  font-size: 2em;
+}

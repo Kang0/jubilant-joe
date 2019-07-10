@@ -21,6 +21,14 @@ import userReducer from './reducers/userReducer'
 import lockerReducer from './reducers/lockerReducer'
 import calendarReducer from './reducers/calendarReducer'
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Raleway', 'sans-serif']
+  }
+})
+
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
