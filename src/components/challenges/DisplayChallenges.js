@@ -49,10 +49,10 @@ class DisplayChallenges extends Component {
                                     <Button negative id={id} onClick={this.handleDeleteClick}>Delete</Button>
                                 </Grid.Column>
                                 <Grid.Column width={5}>
-                                    <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated}/>
+                                    <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated} lastDay={lastDay} />
                                 </Grid.Column>
                                 <Grid.Column width={6}>
-
+                            
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
