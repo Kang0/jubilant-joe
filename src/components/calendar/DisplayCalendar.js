@@ -102,21 +102,21 @@ class DisplayCalendar extends Component {
                         )
                     } else if(jsonDate.clicked) {
                         return(
-                            <Table.Cell collapsing positive key={i} month={month} className="clicked-day" onClick={event => handleCalendarClick(event)}>
+                            <Table.Cell collapsing positive key={i} month={month} className="clicked-day" onClick={() => handleCalendarClick(combineJsonDate)}>
                                 {date}
                             </Table.Cell>
                         )
                     } else {
                         //returns a white cell, but will do something more with this later
                         return (
-                            <Table.Cell collapsing negative key={i} month={month} onClick={event => handleCalendarClick(event)}>
+                            <Table.Cell collapsing negative key={i} month={month} onClick={() => handleCalendarClick(combineJsonDate)}>
                                 {date}
                             </Table.Cell>
                         )
                     }
                 } else {
                     return (
-                        <Table.Cell collapsing key={i} month={month} className="regular-day" onClick={event => handleCalendarClick(event)}>
+                        <Table.Cell collapsing key={i} month={month} className="regular-day">
                             {date}
                         </Table.Cell>
                     )

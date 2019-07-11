@@ -28,10 +28,6 @@ class DisplayChallenges extends Component {
     handleDeleteClick = (event, id) => {
         this.props.deleteChallenge(id)
     }
-
-    handleCalendarClick = (event) => {
-        debugger
-    }
     
     render() {
         const { activeIndex } = this.state
@@ -50,7 +46,6 @@ class DisplayChallenges extends Component {
                             lastDay={lastDay}
                             daysLeft={daysLeft}
                             clicked={clicked}
-                            handleCalendarClick={this.handleCalendarClick}
                             handleDeleteClick={this.handleDeleteClick}
                             handleOnButtonClick={this.handleOnButtonClick}
                         />

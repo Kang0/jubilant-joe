@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DisplayCalendar from '../components/calendar/DisplayCalendar'
-import { Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class CalendarContainer extends Component {
