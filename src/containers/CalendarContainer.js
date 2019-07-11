@@ -28,7 +28,7 @@ class CalendarContainer extends Component {
 
     render() {
         //setting the challenge id 
-        let { id, startDate, endDate } = this.props
+        let { id, startDate, endDate, handleCalendarClick } = this.props
         
         // filter the specific challenge's dates for the calendar
         let calendarDates = this.props.calendar.filter(calendar => calendar[id])[0]
@@ -70,14 +70,15 @@ class CalendarContainer extends Component {
 
         //I want to have each day as a single object that we can do things with
         return (
-                <DisplayCalendar 
-                    calendarObject={calendarObject}
-                    dates={monthArrays}
-                    startDate={startDate}
-                    endDate={endDate}
-                    onCalendarNext={this.onCalendarNext}
-                    onCalendarPrev={this.onCalendarPrev}
-                    activeCalendar={this.state.activeCalendar} />
+            <DisplayCalendar 
+                calendarObject={calendarObject}
+                dates={monthArrays}
+                startDate={startDate}
+                endDate={endDate}
+                onCalendarNext={this.onCalendarNext}
+                onCalendarPrev={this.onCalendarPrev}
+                activeCalendar={this.state.activeCalendar}
+                handleCalendarClick={handleCalendarClick} />
         )
     }
 }

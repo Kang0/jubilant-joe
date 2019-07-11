@@ -29,6 +29,10 @@ class DisplayChallenges extends Component {
     handleDeleteClick = (event, id) => {
         this.props.deleteChallenge(id)
     }
+
+    handleCalendarClick = () => {
+        debugger
+    }
     
     render() {
         const { activeIndex } = this.state
@@ -38,21 +42,21 @@ class DisplayChallenges extends Component {
             return(
                 <Accordion key={id} fluid styled>
                     <Accordion.Title active={activeIndex === id} index={id} onClick={this.handleCardClick} >
-                        <ChallengeCard key={id} challenge={challenge} handleCardClick={this.handleCardClick} handleOnButtonClick={this.handleOnButtonClick} />
+                        <ChallengeCard key={id} challenge={challenge} handleCardClick={this.handleCardClick} />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === id}>
                         <Grid columns={3} divided container>
                             <Grid.Row>
                                 <Grid.Column width={5}>
-                                    <CalendarContainer key={id} id={id} startDate={dayCreated} endDate={lastDay} />
+                                    <CalendarContainer key={id} id={id} startDate={dayCreated} endDate={lastDay} handleCalendarClick={this.handleCalendarClick} />
                                     <br />
                                     <Button negative id={id} onClick={this.handleDeleteClick}>Delete</Button>
                                 </Grid.Column>
                                 <Grid.Column width={5}>
-                                    <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated} lastDay={lastDay} />
+                                    <ChallengeInformation key={id} daysLeft={daysLeft} dayCreated={dayCreated} lastDay={lastDay} clicked={clicked} handleOnButtonClick={this.handleOnButtonClick} id={id} />
                                 </Grid.Column>
                                 <Grid.Column width={6}>
-
+                                    
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>

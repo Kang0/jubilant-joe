@@ -8,7 +8,7 @@ class DisplayCalendar extends Component {
 
     render() {
         //destructure props
-        let { dates, startDate, endDate, calendarObject, activeCalendar, onCalendarNext, onCalendarPrev } = this.props
+        let { dates, startDate, endDate, calendarObject, activeCalendar, onCalendarNext, onCalendarPrev, handleCalendarClick } = this.props
         //grab the active calendar dates from dates
         //dates = (4) [Array(30), Array(31), Array(30), Array(31)] - each array is a different month
         let activeCalendarDates = dates[activeCalendar] || []
@@ -102,21 +102,21 @@ class DisplayCalendar extends Component {
                         )
                     } else if(jsonDate.clicked) {
                         return(
-                            <Table.Cell collapsing positive key={i} month={month} className="clicked-day">
+                            <Table.Cell collapsing positive key={i} month={month} className="clicked-day" onClick={event => handleCalendarClick(event)}>
                                 {date}
                             </Table.Cell>
                         )
                     } else {
                         //returns a white cell, but will do something more with this later
                         return (
-                            <Table.Cell collapsing negative key={i} month={month}>
+                            <Table.Cell collapsing negative key={i} month={month} onClick={event => handleCalendarClick(event)}>
                                 {date}
                             </Table.Cell>
                         )
                     }
                 } else {
                     return (
-                        <Table.Cell collapsing key={i} month={month} className="regular-day">
+                        <Table.Cell collapsing key={i} month={month} className="regular-day" onClick={event => handleCalendarClick(event)}>
                             {date}
                         </Table.Cell>
                     )

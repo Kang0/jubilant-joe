@@ -4,18 +4,8 @@ import '../../index.css'
 
 class ChallengeCard extends Component {
 
-    state = {
-        likes: 0
-    }
-
-    handleLikeButton = () => {
-        this.setState(
-            {likes: this.state.likes + 1}
-        )
-    }
-
     render(){
-        let { handleCardClick, challenge, handleOnButtonClick } = this.props
+        let { handleCardClick, challenge } = this.props
         return(
             <Card fluid color={challenge.clicked ? "red" : "green"} onClick={event => handleCardClick(event)}>
                 <Card.Content>
@@ -27,15 +17,6 @@ class ChallengeCard extends Component {
                         </div>
                     </Card.Description>
                 </Card.Content>
-                <Card.Content extra>
-                    {
-                        challenge.clicked ? 
-                            <Button basic color="red" disabled>Already completed for the day</Button>
-                            :
-                            <Button basic color="green" id={challenge.id} onClick={e=>handleOnButtonClick(e)}>I completed this today</Button>
-                    }
-                </Card.Content>
-                <Button onClick={this.handleLikeButton}>Like {this.state.likes}</Button>
             </Card>
         )}
 }
