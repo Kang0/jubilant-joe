@@ -8,7 +8,7 @@ export default function calendarReducer(state = [], action) {
             })
             return calendarArray
         
-        case "UPDATE_CALENDAR":
+        case "POST_NEW_CALENDAR":
             let challengeCalendar = {}
             challengeCalendar[action.payload[0].challenge_id] = action.payload
             return [...state, challengeCalendar]

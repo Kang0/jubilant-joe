@@ -39,7 +39,7 @@ const logoutUser = () => {
 export const registerUser = userInfo => {
 
     return dispatch => {
-        fetch('http://localhost:3001/registration', {
+        fetch('http://localhost:3001/api/v1/registration', {
                 method: "POST",
                 body: JSON.stringify(userInfo),
                 headers: {
@@ -63,7 +63,7 @@ export const registerUser = userInfo => {
 }
 
 export const loginUser = userInfo => {
-    let url = "http://localhost:3001/login"
+    let url = "http://localhost:3001/api/v1/login"
 
     return dispatch => {
         //this dispatch sets the state to requesting, notifying the request has been sent

@@ -31,7 +31,7 @@ export const postChallenge = formData => {
                 .then(resp => resp.json())
                 .then(data => {
                     dispatch({ type: "POST_CHALLENGE", payload: data })
-                    dispatch({ type: "UPDATE_CALENDAR", payload: data.calendars })
+                    dispatch({ type: "POST_NEW_CALENDAR", payload: data.calendars })
                 })
                 .catch(error => console.log("Error" + error))
     }
@@ -63,7 +63,7 @@ export const getUserChallenges = () => {
     return dispatch => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return (
-            fetch('http://localhost:3001/user/challenges', {
+            fetch('http://localhost:3001/api/v1/user/challenges', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
