@@ -77,7 +77,7 @@ export const getUserChallenges = () => {
             .then(data => {
                 const updatedDays = updateDays(data)
                 dispatch({ type: "UPDATE_DAYS", payload: updatedDays })
-                dispatch({ type: "SET_CALENDAR_STATE", payload: data })
+                // dispatch({ type: "SET_CALENDAR_STATE", payload: data })
             })//once the user challenges is received, then we can update the days accordingly
             .catch(error => console.log("Error" + error))
         )

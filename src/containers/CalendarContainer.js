@@ -27,24 +27,21 @@ class CalendarContainer extends Component {
 
     render() {
         //setting the challenge id 
-        let { id, startDate, endDate, handleCalendarClick } = this.props
-        
-        // filter the specific challenge's dates for the calendar
-        let calendarDates = this.props.calendar.filter(calendar => calendar[id])[0]
+        let { id, startDate, endDate, handleCalendarClick, calendar } = this.props
+
         //unique years due to change of year from oct/nov/dec - jan/feb/march
         //the Set object lets you store unique values of any type
         let uniqueMonths = []
         let uniqueYears = []
         let calendarObject = {}
 
-        if(this.props.calendar.length > 0 && calendarDates !== undefined) {
+        if(calendar.length > 0) {
             //set the variables once this.props.calendar is set in state
-            uniqueMonths = [...new Set(calendarDates[id].map(date => date.months))]
-            uniqueYears = [...new Set(calendarDates[id].map(date => date.years ))]
-
+            uniqueMonths = [...new Set(calendar.map(date => date.months))]
+            uniqueYears = [...new Set(calendar.map(date => date.years ))]
             //create new Object that has keys for each month and the values are the challenge days in that specific month
             uniqueMonths.forEach(month => calendarObject[month] = [])
-            calendarDates[id].forEach((date, index) => {
+            calendar.forEach((date, index) => {
                 calendarObject[date.months].push(date)
             })
         }
@@ -82,9 +79,9 @@ class CalendarContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        calendar: state.calendar
+        calendar: state.calendar.find(calendar => calendar[0].challenge_id === ownProps.id) || []
     }
 }
 

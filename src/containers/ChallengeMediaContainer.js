@@ -26,6 +26,7 @@ class ChallengeMediaContainer extends Component {
         let { calendarDate, id, challengeDate } = this.props
         //returns ["YYYY", "M", "D"]
         //once the calendar state has been loaded...
+        
         if(challengeDate.length > 0) {
             const currentMonth = moment().format("M")
             const currentDay = moment().format('D')
@@ -33,7 +34,7 @@ class ChallengeMediaContainer extends Component {
             let month = calendarDateArray[1]
             let day = calendarDateArray[2]
             //choose the selected date the user clicked on the calendar
-            let selectedDate = challengeDate[0][id].find(challenge => challenge["months"] == month && challenge["date"] == day)
+            let selectedDate = challengeDate.find(challenge => challenge["months"] == month && challenge["date"] == day)
             let fullDate = moment(calendarDate, "YYYY-M-D").format("dddd, MMMM Do YYYYY")
 
             return(
@@ -55,7 +56,7 @@ class ChallengeMediaContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
     let { id } = ownProps
     return {
-        challengeDate: state.calendar.filter(challenge => challenge[id])
+        challengeDate: state.calendar.filter(challenge => challenge[0].challenge_id === id).flat()
     }
 }
 

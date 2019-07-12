@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import DisplayChallenges from '../components/challenges/DisplayChallenges'
 //import challenge actions
 import { buttonClickUpdateChallenge, getUserChallenges, deleteChallenge } from '../actions/actionChallenge'
+import { getUserCalendar } from '../actions/actionCalendar'
 import { clickAddTwoCurrency } from '../actions/actionLocker'
 //import semantic ui
 import { Grid } from 'semantic-ui-react'
@@ -13,6 +14,7 @@ class ChallengeContainer extends Component {
 
     componentDidMount() {
         this.props.getUserChallenges()
+        this.props.getUserCalendar()
     }
 
     render () {
@@ -45,5 +47,6 @@ export default connect(mapStateToProps, {
     buttonClickUpdateChallenge,
     getUserChallenges,
     clickAddTwoCurrency,
-    deleteChallenge
+    deleteChallenge,
+    getUserCalendar
 })(ChallengeContainer)
