@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { submitNote } from '../../actions/actionCalendar'
 
 class NoteForm extends Component {
     state = {
@@ -8,14 +10,16 @@ class NoteForm extends Component {
 
     handleOnChange = (e, { name, value }) => this.setState({ [name]: value })
 
-    handleOnSubmit = () => {
+    handleOnSubmit = (note, challengeId, dateId) => {
+        this.props.submitNote(note, challengeId, dateId)
     }
 
     render(){
         const { note } = this.state
+        const { challengeId, dateId } = this.props
 
         return(
-            <Form>
+            <Form onSubmit={() => this.handleOnSubmit(note, challengeId, dateId)}>
                 <Form.TextArea placeholder="...anything noteworthy?" name='note' value={note} onChange={this.handleOnChange} />
                 <Form.Button>Submit</Form.Button>
             </Form>
@@ -23,4 +27,4 @@ class NoteForm extends Component {
     }
 }
 
-export default NoteForm
+export default connect(null, { submitNote })(NoteForm)
