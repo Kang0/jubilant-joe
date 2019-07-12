@@ -40,3 +40,8 @@ code {
 .dates {
   font-size: 2em;
 }
+
+.card-date{
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.8em;
+}

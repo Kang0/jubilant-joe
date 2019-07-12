@@ -25,7 +25,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Raleway', 'sans-serif']
+    families: ['Raleway:300', 'sans-serif']
   }
 })
 

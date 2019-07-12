@@ -1,5 +1,4 @@
 import moment from 'moment'
-import { getCalendar } from './actionCalendar'
 
 //POST new user challenge to the db
 export const postChallenge = formData => {
