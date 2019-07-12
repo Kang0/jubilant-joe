@@ -15,7 +15,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.2",
     "tail.datetime": "^0.4.13",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "lodash.template": ">=4.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
