@@ -81,22 +81,22 @@ class DisplayCalendar extends Component {
                     let jsonDateToMoment = moment(combineJsonDate, "YYYY-M-DD")
                     //compare the reformated moment to decide which table cell to create(could be the current day cell, start date cell, or end date cell)
                     if(jsonDateToMoment.isSame(current_day, 'day') && jsonDateToMoment.isSame(current_day, 'month')) {
-                        //changes cell to yellow if its the current day
+                        //changes cell to purple if its the current day
                         return(
-                            <Table.Cell collapsing key={i} month={month} className="current-day">
+                            <Table.Cell collapsing key={i} month={month} className="current-day" onClick={() => handleCalendarClick(combineJsonDate)}>
                                 {date}
                             </Table.Cell>
                         )
                     } else if(jsonDateToMoment.isSame(momentStartDate, 'day')) {
                         return(
-                            <Table.Cell collapsing key={i} month={month} className="start-day">
+                            <Table.Cell collapsing key={i} month={month} className="start-day" onClick={() => handleCalendarClick(combineJsonDate)}>
                                 {date}
                             </Table.Cell>
                         )
                     } else if(jsonDateToMoment.isSame(momentEndDate, 'day')) {
                         //changes cell to red for end day
                         return(
-                            <Table.Cell collapsing key={i} month={month} className="end-day">
+                            <Table.Cell collapsing key={i} month={month} className="end-day" onClick={() => handleCalendarClick(combineJsonDate)}>
                                 {date}
                             </Table.Cell>
                         )

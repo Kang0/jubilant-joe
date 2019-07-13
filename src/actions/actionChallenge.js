@@ -126,7 +126,7 @@ export const buttonClickUpdateChallenge = (id) => {
         //set dayAfter to the start of (12 am) of the next day
         const dayAfterCurrentTime = moment(currentTime).add(1, 'd').startOf('day').format("MMM D YY, h:mm a")
 
-        //if the current time is after the challenge's dayAfter time, update the clicked, timeClicked, and timeToClick attributes
+        // if the current time is after the challenge's dayAfter time, update the clicked, timeClicked, and timeToClick attributes
         if (moment(currentTime, "MMM D YY, h:mm a").isSameOrAfter(userChallenge.timeToClick, "MMM D YY, h:mm a")) {
             userChallenge.clicked = true
             userChallenge.timeClicked = currentTime
