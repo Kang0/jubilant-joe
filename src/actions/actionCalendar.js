@@ -33,7 +33,7 @@ export const submitNote = (note, challengeId, dateId) => {
         })
         .then(req => req.json())
         .then(data => {
-            debugger
+            dispatch({ type: "UPDATE_CALENDAR_DATE", payload: data})
         })
     }
 }

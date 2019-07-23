@@ -34,7 +34,7 @@ class ChallengeMediaContainer extends Component {
             let day = calendarDateArray[2]
             //choose the selected date the user clicked on the calendar
             let selectedDate = challengeDate.find(challenge => challenge["months"] == month && challenge["date"] == day)
-            let fullDate = moment(calendarDate, "YYYY-M-D").format("dddd, MMMM Do YYYYY")
+            let fullDate = moment(calendarDate, "YYYY-M-D").format("dddd, MMMM Do YYYY")
 
             return(
                 <div>
