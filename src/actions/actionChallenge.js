@@ -71,8 +71,9 @@ export const getUserChallenges = () => {
             })
             .then(req => req.json())
             .then(data => {
-                dispatch({ type: "ADD_USER_CHALLENGES", payload: data })
-                return data
+                let notCompletedChallenges = data.filter(challenge => challenge.completed === false)
+                dispatch({ type: "ADD_USER_CHALLENGES", payload: notCompletedChallenges })
+                return notCompletedChallenges
             })
             .then(data => {
                 const updatedDays = updateDays(data)

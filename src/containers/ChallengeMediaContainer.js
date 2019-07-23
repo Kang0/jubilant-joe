@@ -8,7 +8,6 @@ import NoteForm from '../components/challenges/NoteForm';
 class ChallengeMediaContainer extends Component {
 
     handleNote = (selectedDate, currentMonth, currentDay, month, day) => {
-
         if(currentMonth === month && currentDay === day){
             let challengeId = selectedDate['challenge_id']
             let dateId = selectedDate['id']
