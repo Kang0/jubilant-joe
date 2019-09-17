@@ -2,7 +2,7 @@
   "name": "my-app-build1",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "https://rails-server-100-days.herokuapp.com/",
   "dependencies": {
     "cors": "^2.8.5",
     "eslint-utils": "^1.4.2",

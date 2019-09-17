@@ -39,7 +39,7 @@ const logoutUser = () => {
 export const registerUser = userInfo => {
 
     return dispatch => {
-        fetch('http://localhost:3001/api/v1/registration', {
+        fetch('https://rails-server-100-days.herokuapp.com/api/v1/registration', {
                 method: "POST",
                 body: JSON.stringify(userInfo),
                 headers: {
@@ -63,7 +63,7 @@ export const registerUser = userInfo => {
 }
 
 export const loginUser = userInfo => {
-    let url = "http://localhost:3001/api/v1/login"
+    let url = "https://rails-server-100-days.herokuapp.com/api/v1/login"
 
     return dispatch => {
         //this dispatch sets the state to requesting, notifying the request has been sent
@@ -98,7 +98,7 @@ export const getUser = () => {
     let token = localStorage.getItem('token')
     return dispatch => {
         return(
-            fetch('http://localhost:3001/user/find_user', {
+            fetch('https://rails-server-100-days.herokuapp.com/user/find_user', {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${token}`

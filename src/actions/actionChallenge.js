@@ -19,7 +19,7 @@ export const postChallenge = formData => {
 
     return (dispatch) => {
         dispatch({ type: "LOADING_CHALLENGE"});
-        return fetch('http://localhost:3001/api/v1/challenges.json', {
+        return fetch('https://rails-server-100-days.herokuapp.com/api/v1/challenges.json', {
                     method: 'POST',
                     body: JSON.stringify({challenge: formData, calendar: calendar}),
                     headers: {
@@ -43,7 +43,7 @@ export const getChallenges = () => {
 
     return (dispatch, getState) => {
         dispatch({ type: "LOADING_CHALLENGE"});
-        return fetch('http://localhost:3001/api/v1/challenges.json', {
+        return fetch('https://rails-server-100-days.herokuapp.com/api/v1/challenges.json', {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -63,7 +63,7 @@ export const getUserChallenges = () => {
     return dispatch => {
         dispatch({ type: "LOADING_CHALLENGE"});
         return (
-            fetch('http://localhost:3001/api/v1/user/challenges', {
+            fetch('https://rails-server-100-days.herokuapp.com/api/v1/user/challenges', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -134,7 +134,7 @@ export const buttonClickUpdateChallenge = (id) => {
             userChallenge.timeToClick = dayAfterCurrentTime
             let currentTimeServer = currentTimeMoment.format("M DD YYYY")
             
-            const postUpdateUrl = `http://localhost:3001/api/v1/challenges/${id}`
+            const postUpdateUrl = `https://rails-server-100-days.herokuapp.com/api/v1/challenges/${id}`
             
             return (
                 fetch(postUpdateUrl, {
@@ -157,7 +157,7 @@ export const buttonClickUpdateChallenge = (id) => {
 //Delete user's challenge
 export const deleteChallenge = (id) => {
     let token = localStorage.getItem("token")
-    let deleteUrl = `http://localhost:3001/api/v1/challenges/${id}`
+    let deleteUrl = `https://rails-server-100-days.herokuapp.com/api/v1/challenges/${id}`
     return (dispatch, getState) => {
         fetch(deleteUrl, {
             method: "DELETE",

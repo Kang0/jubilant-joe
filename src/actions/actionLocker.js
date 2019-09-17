@@ -2,7 +2,7 @@ export const getLocker = () => {
     let token = localStorage.getItem('token')
     return dispatch => {
         return(
-            fetch('http://localhost:3001/user/locker', {
+            fetch('https://rails-server-100-days.herokuapp.com/user/locker', {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -22,7 +22,7 @@ export const clickAddTwoCurrency = () => {
         locker.currency += 2
         debugger;
         return(
-            fetch('http://localhost:3001/user/updatelocker', {
+            fetch('https://rails-server-100-days.herokuapp.com/user/updatelocker', {
                 method: "PATCH",
                 body: JSON.stringify(locker),
                 headers: {
