@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux'
 import { postChallenge } from '../../actions/actionChallenge'
 import { Grid, Button, Form, Message } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
 
 import TipColumn from './TipColumn'
 
@@ -15,7 +16,8 @@ class ChallengeForm extends Component {
         lastDay: '',
         clicked: false,
         timeClicked: '',
-        timeToClick: ''
+        timeToClick: '',
+        toChallengePage: false
     }
 
     componentDidMount() {
@@ -30,7 +32,12 @@ class ChallengeForm extends Component {
 
     handleOnSubmit = event => {
         event.preventDefault()
+        
         this.props.postChallenge(this.state)
+            .then(() => this.setState(() => ({
+                toChallengePage: true
+            })))
+
         this.setState({
             name: ''
         })
@@ -39,7 +46,7 @@ class ChallengeForm extends Component {
     getDate = () => {
         const dayCreated = moment(new Date()).format('MM-DD-YYYY')
         const lastDay = moment(dayCreated, "MM-DD-YYYY").add(100, 'days').format('MM-DD-YYYY')
-        
+
         const timeToClick = moment(new Date()).format("MMM D YY, h:mm a")
 
         this.setState({
@@ -49,14 +56,19 @@ class ChallengeForm extends Component {
         })
     }
 
-    render () {
+    render() {
+
+        if(this.state.toChallengePage === true){
+            return <Redirect to="/" />
+        }
+
         return (
             <Grid padded divided="vertically">
                 <Grid.Row centered>
                     <React.Fragment>
-                        <Form onSubmit={event=>this.handleOnSubmit(event)}>
-                            <Form.Input label="100 Day Challenge" value={this.state.name} onChange={event=>this.handleOnChange(event)} />
-                            <Message success header="Challenge Successfully created" content="You're new challenge has started. Good Luck!" />
+                        <Form onSubmit={event => this.handleOnSubmit(event)}>
+                            <Form.Input label="100 Day Challenge" value={this.state.name} onChange={event => this.handleOnChange(event)} />
+                            {/* <Message success header="Challenge Successfully created" content="You're new challenge has started. Good Luck!" /> */}
                             <Button>Create</Button>
                         </Form>
                     </React.Fragment>
@@ -75,9 +87,6 @@ class ChallengeForm extends Component {
             </Grid>
         )
     }
-
-
-    
 
 }
 
