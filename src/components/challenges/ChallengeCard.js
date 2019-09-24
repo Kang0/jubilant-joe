@@ -12,7 +12,7 @@ class ChallengeCard extends Component {
                     <Card.Header>{challenge.name}</Card.Header>
                     <Card.Description className="days-left">
                         {challenge.daysLeft}<br /><br />
-                        <div class="card-text">
+                        <div className="card-text">
                             days left
                         </div>
                     </Card.Description>

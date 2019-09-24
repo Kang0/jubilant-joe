@@ -34,6 +34,7 @@ class CalendarContainer extends Component {
         let uniqueMonths = []
         let uniqueYears = []
         let calendarObject = {}
+        let startOfMonth = []
 
         if(calendar.length > 0) {
             //set the variables once this.props.calendar is set in state
@@ -47,22 +48,26 @@ class CalendarContainer extends Component {
         }
 
         //create moments of start of each month
-        const startOfMonth = uniqueMonths.map(month => moment(month, "M").startOf())
+        if (uniqueYears.length > 1) {
+            let indexToSplit = uniqueMonths.indexOf(12)
+            let currentYear = uniqueMonths.slice(0, indexToSplit + 1)
+            let nextYear = uniqueMonths.slice(indexToSplit + 1)
 
-        //if there are two unique years, we have to ensure the years are correct for the months in the next year when we created the moments above
-        // if (uniqueYears.length > 1) {
-        //     for (let i=0; i<startOfMonth.length; i++) {
-
-        //     }
-        // }
-        //create an array populated with every day of each month
-        //(4) [Array(30), Array(31), Array(31), Array(30)]
+            startOfMonth = currentYear.map(month => moment(month, "M").startOf())
+            nextYear.map((month) => {
+                startOfMonth.push(moment(`${month}-${uniqueYears[1]}`, "M-YYYY").startOf())
+            })
+        } else {
+            startOfMonth = uniqueMonths.map(month => moment(month, "M").startOf())
+        }
 
         let monthArrays = startOfMonth.map(month => {
             return [...Array(month.daysInMonth())].map((_, i) => {
                 return month.clone().add(i, 'day')
             })
         })
+
+        debugger
 
         //I want to have each day as a single object that we can do things with
         return (
