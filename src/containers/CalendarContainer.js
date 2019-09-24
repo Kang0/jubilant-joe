@@ -11,9 +11,12 @@ class CalendarContainer extends Component {
     }
 
     componentDidMount() {
+        let firstMonth = moment(this.props.startDate, "MM-DD-YYYY").startOf("month")
+        let lastMonth = moment(this.props.endDate, "MM-DD-YYYY").startOf("month")
         this.setState({
             activeCalendar: moment().format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M"),
-            maxIndex: moment(this.props.endDate, "MM-DD-YYYY").format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M")
+            // maxIndex: moment(this.props.endDate, "MM-DD-YYYY").format("M") - moment(this.props.startDate, "MM-DD-YYYY").format("M")
+            maxIndex: lastMonth.diff(firstMonth, "months")
         })
     }
 
@@ -66,8 +69,6 @@ class CalendarContainer extends Component {
                 return month.clone().add(i, 'day')
             })
         })
-
-        debugger
 
         //I want to have each day as a single object that we can do things with
         return (
